@@ -11,13 +11,19 @@ import java.sql.PreparedStatement;
 
 // https://github.com/Password4j/password4j?tab=readme-ov-file
 
+/* Hashes password with scrypt, verifies with scrypt, if it detects non-scrypt
+it will throw a bad parameters exception and verify with MD5 and then rehash
+with scrypt and update the database. Using salt but not using pepper can
+add later if needing more security.
+ */
+
 public final class PasswordUtil {
     private PasswordUtil() {}
 
     /** Create a scrypt hash for new users (salt + params are embedded in the result). */
     public static String hashScrypt(String rawPassword) {
         if (rawPassword == null) throw new IllegalArgumentException("password is null");
-        Hash hash = Password.hash(rawPassword).withScrypt(); // sensible defaults
+        Hash hash = Password.hash(rawPassword).withScrypt(); // salt
         return hash.getResult();
     }
 
@@ -33,7 +39,7 @@ public final class PasswordUtil {
             return Password.check(providedPassword, passwordFromDB).with(scrypt);
 
         } catch (BadParametersException notScrypt) {
-            // 2) Not scrypt → treat as legacy MD5 and verify using MD5.
+            // 2) Not scrypt, treat as legacy MD5 and verify using MD5.
             MessageDigestFunction md5 = MessageDigestFunction.getInstance("MD5");
             boolean ok = Password.check(providedPassword, passwordFromDB).with(md5);
             if (!ok) return false;
