@@ -28,7 +28,7 @@ public final class PasswordUtil {
         if (providedPassword == null || passwordFromDB == null) return false;
 
         try {
-            // 1) Try to parse as scrypt; if that succeeds, verify with the embedded params.
+            // 1) Try to parse as scrypt
             ScryptFunction scrypt = ScryptFunction.getInstanceFromHash(passwordFromDB);
             return Password.check(providedPassword, passwordFromDB).with(scrypt);
 
