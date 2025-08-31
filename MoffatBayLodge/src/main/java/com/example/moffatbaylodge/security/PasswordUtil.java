@@ -19,12 +19,6 @@ public final class PasswordUtil {
         return hash.getResult();
     }
 
-    /**
-     * Verify a provided password against a DB value that may be scrypt (new) or MD5 (legacy).
-     * If it's legacy MD5 and the password is correct, migrate the stored hash to scrypt.
-     *
-     * @return true if password is valid (and possibly migrated), false otherwise
-     */
     public static boolean verifyAndMigrateFromMD5ToScrypt(Connection conn,
                                                           int userId,
                                                           String providedPassword,
