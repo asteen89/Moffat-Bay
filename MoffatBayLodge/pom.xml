@@ -11,7 +11,6 @@
     <packaging>war</packaging>
 
     <build>
-        <!-- This makes the file name target\MoffatBayLodge.war -->
         <finalName>MoffatBayLodge</finalName>
     </build>
 
@@ -35,7 +34,7 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>9.4.0</version>
         </dependency>
-
+<!-- Settings for passwordj4 -->
         <dependency>
             <groupId>com.password4j</groupId>
             <artifactId>password4j</artifactId>
