@@ -9,6 +9,8 @@ import com.password4j.ScryptFunction;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+// https://github.com/Password4j/password4j?tab=readme-ov-file 
+
 public final class PasswordUtil {
     private PasswordUtil() {}
 
