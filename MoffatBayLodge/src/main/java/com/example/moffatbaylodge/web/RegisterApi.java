@@ -1,6 +1,9 @@
 package com.example.moffatbaylodge.web;
 
 import com.moffatbaylodge.beans.UserBean;
+import com.password4j.Hash;
+import com.password4j.Password;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,22 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class RegisterApi {
 
     private final JdbcTemplate db;
+    public RegisterApi(JdbcTemplate db) { this.db = db; }
 
-    public RegisterApi(JdbcTemplate db) {
-        this.db = db;
-    }
-
-    // Put information into the database
     @PostMapping
-    public String register(@RequestBody UserBean user) {
-        db.update(
+    public String register(UserBean user) {
+        Hash hash = Password.hash(user.getPassword()).withBcrypt(); // <-- lowercase c
+        String hashed = hash.getResult();
+
+        int rows = db.update(
                 "INSERT INTO guests (FirstName, LastName, EmailAddress, PhoneNumber, Password) VALUES (?, ?, ?, ?, ?)",
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                user.getPhone(),
-                user.getPassword()
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone(), hashed
         );
-        return "User registered!";
+        return "rows=" + rows;
     }
 }
