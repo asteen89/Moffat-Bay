@@ -1,12 +1,5 @@
 package com.moffatbaylodge.beans;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-
 public class UserBean {
     private String firstName;
     private String lastName;

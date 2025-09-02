@@ -32,7 +32,7 @@
                     <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
                     <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
                 </ul>
-                <a href="#" class="btn-login">Login / Register</a>
+                <a href="${pageContext.request.contextPath}/login" class="btn-login">Login / Register</a>
             </div>
         </div>
     </nav>
