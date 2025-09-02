@@ -75,8 +75,7 @@
                 <h1>Create an account</h1>
                 <p>Create your account, it takes less than a minute. If you already have an account</p>
                 <!--Button for login page -->
-                <button type="button" class="btn btn-link text-decoration-none"style="color:#05563fa4; font-weight:bold; font-family:Roboto;" onclick="location.href='login.jsp'"> login here
-                </button>
+                <button type="button" class="btn btn-link text-decoration-none"style="color:#05563fa4; font-weight:bold; font-family:Roboto;" onclick="location.href='${pageContext.request.contextPath}/login'">Login</button>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
             <div class="container-sm">
