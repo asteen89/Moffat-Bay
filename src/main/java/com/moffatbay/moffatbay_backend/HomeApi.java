@@ -1,4 +1,5 @@
-package com.moffatbay;
+package com.moffatbay.moffatbay_backend;
+
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
