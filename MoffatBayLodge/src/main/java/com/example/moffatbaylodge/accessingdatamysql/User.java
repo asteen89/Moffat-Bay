@@ -11,23 +11,23 @@ import jakarta.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // good for MySQL
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GuestID")
-    private Long id; // use Long if GuestID is BIGINT
+    private Long id;
 
-    @Column(name = "FirstName", nullable = false, length = 100)
+    @Column(name = "FirstName", nullable = false, length = 50)
     private String firstName;
 
-    @Column(name = "LastName", nullable = false, length = 100)
+    @Column(name = "LastName", nullable = false, length = 50)
     private String lastName;
 
     @Column(name = "PhoneNumber", length = 20)
     private String phoneNumber;
 
-    @Column(name = "EmailAddress", nullable = false, unique = true, length = 255)
+    @Column(name = "EmailAddress", nullable = false, unique = true, length = 100)
     private String emailAddress;
 
-    @Column(name = "Password", nullable = false, length = 255)
+    @Column(name = "Password", nullable = false, length = 250)
     private String password;
 
     public Long getId() { return id; }
