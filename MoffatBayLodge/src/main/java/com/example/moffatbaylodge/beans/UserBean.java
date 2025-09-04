@@ -1,4 +1,4 @@
-package com.moffatbaylodge.beans;
+package com.example.moffatbaylodge.beans;
 
 public class UserBean {
     private String firstName;
