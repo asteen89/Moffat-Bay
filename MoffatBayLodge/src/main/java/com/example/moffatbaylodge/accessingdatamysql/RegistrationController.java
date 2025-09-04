@@ -13,7 +13,7 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String showForm() {
-        return "Registration"; // resolves to Registration.jsp
+        return "Registration";
     }
 
     @PostMapping("/register")
@@ -30,7 +30,7 @@ public class RegistrationController {
         u.setLastName(lastName);
         u.setEmailAddress(email);
         u.setPhoneNumber(phone);
-        u.setPassword(password); // your entity uses passwordHash
+        u.setPassword(password);
         userRepository.save(u);
 
         return "redirect:/login";
