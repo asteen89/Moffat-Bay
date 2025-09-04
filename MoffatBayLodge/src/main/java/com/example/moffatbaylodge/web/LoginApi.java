@@ -1,6 +1,6 @@
 package com.example.moffatbaylodge.web;
 
-import com.moffatbaylodge.beans.UserBean;
+import com.example.moffatbaylodge.beans.UserBean;
 import com.password4j.Password;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

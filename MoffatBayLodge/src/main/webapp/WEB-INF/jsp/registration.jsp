@@ -97,7 +97,7 @@
                         <input type="checkbox" onclick="myFunction()"> Show Password
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-warning" style="color:white;">Sign up</button>
+                        <button type="submit" class="btn btn-warning" style="color:white;">Sign Up</button>
                     </div>
                 </form>
             </div>
