@@ -6,14 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table(name = "guests")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GuestID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "FirstName", nullable = false, length = 50)
     private String firstName;
@@ -30,8 +29,8 @@ public class User {
     @Column(name = "Password", nullable = false, length = 250)
     private String password;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
