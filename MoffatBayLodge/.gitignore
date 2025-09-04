@@ -35,8 +35,10 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Storesrc/main/resources/application.properties 
-src/main/resources/application-local.properties 
+.DS_Store
+src/main/resources/application.properties
+src/main/resources/application-local.properties
 
-#ignore local application properties
+# Ignore local application properties
 **/src/main/resources/application-local.properties
+application-local.properties
