@@ -15,6 +15,7 @@ public class RegisterApi {
     private final JdbcTemplate db;
     public RegisterApi(JdbcTemplate db) { this.db = db; }
 
+
     @PostMapping
     public String register(UserBean user) {
         Hash hash = Password.hash(user.getPassword()).withBcrypt(); // <-- lowercase c
@@ -25,5 +26,7 @@ public class RegisterApi {
                 user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone(), hashed
         );
         return "rows=" + rows;
+
     }
+
 }
