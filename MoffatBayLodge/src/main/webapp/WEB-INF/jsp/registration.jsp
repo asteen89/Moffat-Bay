@@ -81,10 +81,10 @@
             <div class="container-sm">
                 <form action="${pageContext.request.contextPath}/register" method="post">
                     <div class="mb-3">
-                        <input type="text" class="form-control underlined" name="first_name" placeholder="First name" required>
+                        <input type="text" class="form-control underlined" name="firstName" placeholder="First name" required>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control underlined" name="last_name" placeholder="Last name" required>
+                        <input type="text" class="form-control underlined" name="lastName" placeholder="Last name" required>
                     </div>
                     <div class="mb-3">
                         <input type="email" class="form-control underlined" name="email" placeholder="Email Address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
