@@ -37,3 +37,6 @@ build/
 ### Mac OS ###
 .DS_Storesrc/main/resources/application.properties 
 src/main/resources/application-local.properties 
+
+#ignore local application properties
+**/src/main/resources/application-local.properties
