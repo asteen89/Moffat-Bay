@@ -7,22 +7,25 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/home")
+@RequestMapping("/api")
 @CrossOrigin
 public class HomeApi {
+
     private final JdbcTemplate db;
 
     public HomeApi(JdbcTemplate db) {
         this.db = db;
     }
 
-    // Show all room types/prices for the landing page
+    // Landing page: example data fetch (adjust to your schema or remove if unused)
     @GetMapping("/rooms")
     public List<Map<String, Object>> rooms() {
-        return db.queryForList("SELECT RoomID, RoomSize, RoomPrice, Quantity FROM RoomSize");
+        return db.queryForList(
+                "SELECT RoomID, RoomSize, RoomPrice, Quantity FROM RoomSize"
+        );
     }
 
-    // Newsletter subscription
+    // Newsletter subscription endpoint
     @PostMapping("/newsletter")
     public Map<String, Object> subscribe(@RequestBody Map<String, String> in) {
         String email = in.getOrDefault("email", "").trim();

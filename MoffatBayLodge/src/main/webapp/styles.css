@@ -1,377 +1,171 @@
-/* -------------------
-   General
-------------------- */
+/* =========================
+   Global / Base
+========================= */
 body {
-    font-family: Ms Serif, Georgia;
-    margin: 0;
-    padding: 0;
-    background: #f1f1f1;
+  font-family: Ms Serif, Georgia;
+  margin: 0;
+  padding: 0;
+  background: #f1f1f1;
 }
 
-/* -------------------
+/* =========================
    Navbar
-------------------- */
-.navbar-custom {
-    background-color: #009688;
-}
+========================= */
+.navbar-custom { background-color: #009688; }
 
 /* Logo */
-.logo {
-    max-height: 180px;
-    width: auto;
-}
+.logo { max-height: 180px; width: auto; }
 
-/* Main navigation buttons */
+/* Main nav buttons */
 .navbar-custom .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding-left: 0;
-    margin: 0;
+  display: flex; align-items: center; gap: .5rem; padding-left: 0; margin: 0;
 }
-
 .navbar-custom .nav-btn {
-    background-color: #ffc107;
-    color: #000 !important;
-    font-weight: 700;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    min-width: 140px;
-    text-align: center;
-    text-decoration: none !important;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    margin: 0.25rem;
+  background-color: #ffc107; color: #000 !important; font-weight: 700;
+  padding: .6rem 1.2rem; border-radius: 6px; min-width: 140px; text-align: center;
+  text-decoration: none !important; display: inline-block; transition: background-color .3s ease; margin: .25rem;
 }
-
-.navbar-custom .nav-btn:hover {
-    background-color: #e0a800;
-    color: #fff !important;
-    text-decoration: none !important;
-}
+.navbar-custom .nav-btn:hover { background-color: #e0a800; color: #fff !important; }
 
 /* Login/Register button */
 .btn-login {
-    background-color: #ffc107;
-    color: #000;
-    font-weight: 700;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    text-decoration: none !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    transition: background-color 0.3s ease;
+  background-color: #ffc107; color: #000; font-weight: 700;
+  padding: .6rem 1.2rem; border-radius: 6px; text-decoration: none !important;
+  display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+  transition: background-color .3s ease;
 }
-@media (min-width: 992px) {
-  .btn-login { margin-left: auto; }
-}
-.btn-login:hover {
-    background-color: #e0a800;
-    color: #fff !important;
+@media (min-width: 992px){ .btn-login { margin-left: auto; } }
+.btn-login:hover { background-color: #e0a800; color: #fff !important; }
+
+/* Mobile toggle */
+.navbar-toggler { border-color: rgba(255,255,255,.6); }
+.navbar-toggler-icon{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Fix mobile toggle */
-.navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.6);
+/* =========================
+   Hero (banner with CTA)
+========================= */
+.hero{
+  height: 75vh; /* tall like mockup so the building shows */
+  background: url("images/banner-landing.png") center center / cover no-repeat;
+  position: relative; display: flex; align-items: center; color: #fff; padding: 0 5%;
 }
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+.hero::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.45); }
+.hero .container{ position:relative; z-index:2; width:100%; }
+.hero h1{
+  font-size: 3rem; font-weight:700; line-height:1.4; margin-bottom:1rem; text-align:left; max-width:600px;
+}
+.hero p{
+  font-size:1.5rem; margin-bottom:2rem; text-align:left; max-width:550px;
+}
+.hero-btn{
+  background:#ffc107; border:none; padding:14px 32px; font-size:1.2rem; font-weight:700;
+  border-radius:6px; transition:background-color .3s ease;
+}
+.hero-btn:hover{ background:#e0a800; color:#fff !important; }
+
+@media (max-width:768px){
+  .hero{ flex-direction:column; text-align:center; }
+  .hero h1,.hero p{ text-align:center; }
+  .hero-btn{ margin-top:1rem; }
 }
 
-/* -------------------
-   Hero
-------------------- */
-.hero {
-    height: 65vh;
-    background: url("images/banner-landing.png") center center/cover no-repeat;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+/* =========================
+   Booking box
+========================= */
+.booking-box{
+  background:#009688; border-radius:15px; padding:45px 70px; color:#fff;
+}
+.booking-box label{ font-weight:600; color:#fff; }
+.search-btn{
+  padding:10px 20px; font-size:1.3rem; border-radius:10px; margin-left:20px;
+  background:#ffc107; border:none; font-weight:700; transition:background-color .3s ease; color:#000;
+}
+.search-btn:hover{ background:#e0a800; color:#fff !important; }
+section.container.my-5{ margin-top:2rem !important; margin-bottom:2rem !important; }
+
+/* =========================
+   Collage Gallery (matches mockup)
+   Use with:
+   <section class="gallery-collage"><div class="collage-row">...</div></section>
+========================= */
+.gallery-collage{ margin-top:2rem; margin-bottom:2rem; }
+
+.gallery-collage .collage-row{
+  max-width:1140px; margin:0 auto; display:flex; align-items:flex-start; justify-content:center; position:relative;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
+/* === Collage cards (size) === */
+.collage-card{
+  width:360px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  background:#fff;
+  overflow:hidden;
+  transition:transform .25s ease;
+}
+.collage-img{ display:block; width:100%; height:300px; object-fit:cover; }
+
+/* === Overlap like the mockup (desktop) === */
+@media (min-width: 992px){
+  .gallery-collage .collage-row { gap: 0; }
+
+  /* Side images align at the top, overlap inward */
+  .collage-left  { margin-right:-110px; margin-top:0; z-index:2; }
+  .collage-right { margin-left: -110px; margin-top:0; z-index:2; }
+
+  /* Center image sits lower AND ON TOP */
+  .collage-center{ margin-top:50px; z-index:3; }
 }
 
-.hero .container {
-    position: relative;
-    z-index: 2;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-    text-align: center;
-    max-width: 600px;
-}
-
-.hero p {
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    max-width: 550px;
-}
-
-/* Hero Button */
-.hero-btn {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #ffc107;
-    border: none;
-    padding: 14px 32px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-}
-.hero-btn:hover {
-    background-color: #e0a800;
-    color: #fff !important;
-}
-
-/* Responsive hero text */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2rem; }
-  .hero p { font-size: 1rem; }
-  .hero-btn {
-    position: static;
-    transform: none;
-    margin-top: 1rem;
-  }
-}
-
-/* -------------------
-   Booking Section
-------------------- */
-.booking-box {
-    background: #009688;
-    border-radius: 15px;
-    padding: 45px 70px;
-    color: #fff;
-}
-.booking-box label {
-    font-weight: 600;
-    color: #fff;
-}
-
-.search-btn {
-    padding: 10px 20px;
-    font-size: 1.3rem;
-    border-radius: 10px;
-    margin-left: 20px;
-    background-color: #ffc107;
-    border: none;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-    color: #000;
-}
-.search-btn:hover {
-    background-color: #e0a800;
-    color: #fff !important;
-}
-
-section.container.my-5 {
-    margin-top: 2rem !important;
-    margin-bottom: 2rem !important;
-}
-
-/* -------------------
-   Gallery (3 images side by side)
-------------------- */
-.gallery-img {
-    width: 100%;
-    height: 300px;          
-    object-fit: cover;     
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-.gallery-img:hover {
-    transform: scale(1.05);
-}
-
-.gallery-img:hover {
-    transform: scale(1.05);
-}
-
-/* -------------------
-   Footer
-------------------- */
+/* Optional tiny lift on hover (keeps stacking order) */
+.collage-card:hover { transform: translateY(-4px); }
 
 
-.footer .footer-box {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  height: 100%;              
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; 
+
+/* =========================
+   Footer + Newsletter
+========================= */
+.footer .footer-box{
+  background:#fff; border-radius:12px; padding:20px; height:100%;
+  display:flex; flex-direction:column; justify-content:flex-start;
+}
+.footer-box .social-icons a{ color:#919191; font-size:1.2rem; margin:0 10px; transition:color .3s ease; }
+.footer-box .social-icons a:hover{ color:#cacaca; }
+.footer-social{ background:none; border:none; padding:0; margin-top:30px; }
+.footer-box p{ margin-bottom:8px; }
+
+.footer-reviews .footer-box{
+  border:1px solid #ccc; background:#f1f1f1; width:250px; height:140px; margin:0 auto;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+}
+.footer-reviews .rating{ font-size:2rem; font-weight:bold; margin-bottom:10px; }
+.footer-reviews .stars{ font-size:1.9rem; }
+
+.footer-reviews h6,.footer-social h6{ font-size:1.25rem; font-weight:700; }
+.footer .row{ display:flex; align-items:flex-start; }
+.footer-heading{ font-size:1.25rem; font-weight:700; margin-bottom:1rem; }
+
+@media (max-width:768px){
+  .footer form{ flex-direction:column; align-items:center; }
+  .footer input{ width:90% !important; margin-bottom:10px; }
+  .footer button{ width:90%; }
 }
 
-.footer-box .social-icons a {
-    color: #919191;
-    font-size: 1.2rem;
-    margin: 0 10px;
-    transition: color 0.3s ease;
+/* Newsletter card */
+.newsletter-box{ border:1px solid #ccc; padding:20px; border-radius:6px; background:#fff; height:100%; }
+.newsletter-content{ display:flex; align-items:center; gap:15px; }
+.newsletter-logo img{ max-width:150px; height:auto; }
+.newsletter-text h6{ font-size:1.5rem; font-weight:bold; margin-bottom:5px; font-family: Ms Serif, Georgia; }
+.newsletter-text p{ font-size:.95rem; color:#333; margin-bottom:10px; text-align:center; }
+.newsletter-text form{ display:flex; flex-direction:column; gap:10px; }
+.newsletter-text input[type="email"]{
+  padding:10px; border:1px solid #ccc; border-radius:4px; font-size:1rem; width:100%;
 }
-.footer-box .social-icons a:hover {
-    color: #cacaca;
+.newsletter-text input::placeholder{ font-family:"Comic Sans MS", cursive, sans-serif; font-size:1rem; color:#555; }
+.newsletter-text button{
+  padding:10px; background:#27c0eb; color:#fff; border:none; border-radius:4px; font-size:1rem; font-weight:bold;
+  cursor:pointer; transition:background .3s ease;
 }
-
-.footer-social {
-    background: none;
-    border: none;
-    padding: 0;
-    margin-top: 30px;
-}
-
-.footer-box p {
-    margin-bottom: 8px;
-}
-
-.footer-reviews .footer-box {
-    border: 1px solid #ccc;
-    background: #f1f1f1;
-    width: 250px;
-    height: 140px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer-reviews .rating {
-    font-size: 2.0rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.footer-reviews .stars {
-    font-size: 1.9rem;
-}
-
-.footer-reviews h6,
-.footer-social h6 {
-    font-size: 1.25rem;   
-    font-weight: 700;
-}
-
-.footer-social .social-icons a {
-    color: #919191;       
-    font-size: 1.2rem;    
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
-.footer-social .social-icons a:hover {
-    color: #cacaca;       
-}
-
-.footer .row {
-    display: flex;
-    align-items: flex-start;
-}
-
-.footer-heading {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-
-/* Responsive footer */
-@media (max-width: 768px) {
-  .footer form {
-      flex-direction: column;
-      align-items: center;
-  }
-  .footer input {
-      width: 90% !important;
-      margin-bottom: 10px;
-  }
-  .footer button {
-      width: 90%;
-  }
-}
-
-/* Newsletter Box */
-.newsletter-box {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 6px;
-    background: #fff;
-    height: 100%;
-}
-
-/* Layout inside */
-.newsletter-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Logo */
-.newsletter-logo img {
-    max-width: 150px;
-    height: auto;
-}
-
-/* Text */
-.newsletter-text h6 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-family: Ms Serif, Georgia;
-}
-.newsletter-text p {
-    font-size: 0.95rem;
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* Form */
-.newsletter-text form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.newsletter-text input[type="email"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    width: 100%;
-}
-/* Placeholder style */
-.newsletter-text input::placeholder {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 1rem;
-    color: #555;
-}
-.newsletter-text button {
-    padding: 10px;
-    background-color: #27c0eb;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-.newsletter-text button:hover {
-    background-color: #1da9ce;
-}
+.newsletter-text button:hover{ background:#1da9ce; }
