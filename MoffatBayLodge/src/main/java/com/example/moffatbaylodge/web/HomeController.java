@@ -9,13 +9,13 @@ public class HomeController {
     // GET /
     @GetMapping("/")
     public String home() {
-        return "index"; // resolves to /WEB-INF/jsp/index.jsp
+        return "index"; // directs to /WEB-INF/jsp/index.jsp
     }
 
     // GET /login
     @GetMapping("/login")
     public String login() {
-        return "login"; // resolves to /WEB-INF/jsp/login.jsp
+        return "login"; // directs to /WEB-INF/jsp/login.jsp
     }
 
 

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+// This is needed to work with the user entity
+
 @Service
 public class UserService {
     private final UserRepository userRepository;

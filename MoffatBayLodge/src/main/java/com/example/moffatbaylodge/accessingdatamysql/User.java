@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
+// This page will map directly to the the guests database table
+
 @Entity
 @Table(name = "Guests")
 public class User {
