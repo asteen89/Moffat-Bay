@@ -5,6 +5,8 @@
   Time: 12:01 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,17 +59,8 @@
     </script>
 </head>
 <body>
-<%
-    String messageBox = (String) session.getAttribute("messageBox");
-    if (messageBox != null) {
-%>
-<div class="alert alert-warning"><%= messageBox %></div>
-<%
-        session.removeAttribute("messageBox"); // Clear message after displaying
-    }
-%>
-
 <!-- Registration form-->
+<c:if test="${not empty errorMessage}"><div class="alert alert-warning">${errorMessage}</div></c:if>
 <div class="container my-4">
     <div class="d-flex justify-content-center">
         <div class="border p-3 rounded w-100" style="max-width:420px;">
@@ -79,7 +72,7 @@
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
             <div class="container-sm">
-                <form action="${pageContext.request.contextPath}/register" method="post">
+                <form action="/auth/register" method="post">
                     <div class="mb-3">
                         <input type="text" class="form-control underlined" name="firstName" placeholder="First name" required>
                     </div>
@@ -87,13 +80,13 @@
                         <input type="text" class="form-control underlined" name="lastName" placeholder="Last name" required>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control underlined" name="email" placeholder="Email Address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        <input type="email" class="form-control underlined" name="emailAddress" placeholder="Email Address" type="email" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" title="Enter a valid email like name@example.com"  />
                     </div>
                     <div class="mb-3">
-                        <input type="tel" class="form-control underlined" name="phone" placeholder="Phone Number" required pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$">
+                        <input type="tel" class="form-control underlined" name="phoneNumber" placeholder="Phone Number" required pattern="^\d{3}-\d{3}-\d{4}$" title="Enter a valid phone number like 123-234-3456"  />
                     </div>
                     <div class="mb-4">
-                        <input type="password" id="myInput" class="form-control underlined" name="password" placeholder="Password" required minlength="8">
+                        <input type="password" id="myInput" class="form-control underlined" name="password" type="password" placeholder="Password" required minlength="8">
                         <input type="checkbox" onclick="myFunction()"> Show Password
                     </div>
                     <div class="text-center">
