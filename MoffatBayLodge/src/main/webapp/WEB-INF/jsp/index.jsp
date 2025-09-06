@@ -82,26 +82,21 @@
     </div>
 </section>
 
-<!-- Gallery (collage like mockup) -->
-<section class="gallery-collage py-5">
-  <div class="container">
-    <div class="collage-row">
-      <!-- Left -->
-      <div class="collage-card collage-left">
-        <img src="images/room.png" alt="Room" class="collage-img">
-      </div>
-
-      <!-- Center (in front) -->
-      <div class="collage-card collage-center">
-        <img src="images/patio.png" alt="Patio" class="collage-img">
-      </div>
-
-      <!-- Right -->
-      <div class="collage-card collage-right">
-        <img src="images/spa.png" alt="Spa" class="collage-img">
-      </div>
+<!-- Gallery Section -->
+<section class="gallery py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <img src="images/room.png" alt="Room" class="gallery-img">
+            </div>
+            <div class="col-md-4">
+                <img src="images/patio.png" alt="Patio" class="gallery-img">
+            </div>
+            <div class="col-md-4">
+                <img src="images/spa.png" alt="Spa" class="gallery-img">
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 
