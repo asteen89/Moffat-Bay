@@ -1,15 +1,17 @@
 package com.example.moffatbaylodge.web;
 
-import com.moffatbaylodge.beans.UserBean;
-import com.password4j.Hash;
-import com.password4j.Password;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.moffatbaylodge.beans.UserBean;
+import com.password4j.Hash;
+import com.password4j.Password;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+@Profile("db")
 @RestController
-@RequestMapping("/api/registration")
-@CrossOrigin
+@RequestMapping("/api/home")
 public class RegisterApi {
 
     private final JdbcTemplate db;

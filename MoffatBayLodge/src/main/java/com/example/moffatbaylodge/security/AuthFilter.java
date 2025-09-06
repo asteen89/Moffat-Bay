@@ -1,13 +1,21 @@
 package com.example.moffatbaylodge.security;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.*;
+import jakarta.servlet
+.ServletException;
+import jakarta.servlet
+.annotation.WebServlet;
+import jakarta.servlet
+.http.HttpServlet;
+import jakarta.servlet
+.http.HttpServletRequest;
+import jakarta.servlet
+.http.HttpServletResponse;
+import jakarta.servlet
+.*;
+import jakarta.servlet
+.annotation.WebFilter;
+import jakarta.servlet
+.http.*;
 import java.io.IOException;
 
 // Filter for /secure/* pages these must be secure (i.e. logged-in) areas

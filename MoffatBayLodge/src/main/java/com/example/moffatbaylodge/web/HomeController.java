@@ -6,20 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    // GET /
-    @GetMapping("/")
+    // GET /index
     public String home() {
-        return "index"; // resolves to /WEB-INF/jsp/index.jsp
+        return "index";
     }
 
     // GET /login
     @GetMapping("/login")
     public String login() {
-        return "login"; // resolves to /WEB-INF/jsp/login.jsp
+        return "login";
     }
 
-
-    // GET /register
+    // GET /registration
     @GetMapping("/registration")
     public String registration() {
         return "registration";
