@@ -100,9 +100,6 @@
 </section>
 
 
-
-
-
 <!-- Footer -->
 <footer class="footer py-5">
     <div class="container">
@@ -164,7 +161,7 @@
             <a href="#">Reservations</a> |
             <a href="#">About Us</a> |
             <a href="${pageContext.request.contextPath}/login">Login</a> |
-            <a href="#">Contact Us</a>
+            <a href="#">My Reservation</a>
             <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
         </div>
     </div>
