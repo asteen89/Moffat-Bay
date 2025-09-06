@@ -1,5 +1,7 @@
 package com.example.moffatbaylodge.web;
 
+// Unsure exactly if needed, was recommended to put here by https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
+
 public class RegisterDTO {
 
     private String firstName;

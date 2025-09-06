@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,17 +59,7 @@
     </script>
 </head>
 <body>
-<%
-    String messageBox = (String) session.getAttribute("messageBox");
-    if (messageBox != null) {
-%>
-<div class="alert alert-warning"><%= messageBox %></div>
-<%
-        session.removeAttribute("messageBox"); // Clear message after displaying
-    }
-%>
-
-<!-- Registration form-->
+<!-- Login form-->
 <div class="container my-4">
     <div class="d-flex justify-content-center">
         <div class="border p-3 rounded w-100" style="max-width:420px;">
@@ -78,11 +69,12 @@
                 </button></p>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+            <c:if test="${not empty errorMessage}"><div class="alert alert-warning">${errorMessage}</div></c:if>
             <div class="container-sm">
-                <form method="post" action="${pageContext.request.contextPath}/login" class="mt-3">
+                <form method="post" action="/auth/login" class="mt-3">
 
                     <div class="mb-3">
-                        <input type="email" class="form-control underlined" name="email" placeholder="Email Address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        <input type="email" class="form-control underlined" name="email" placeholder="Email Address" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
                     </div>
 
                     <div class="mb-4">
