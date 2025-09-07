@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
                 <p class="lead mb-4">Relax, explore and create lasting memories.</p>
             </div>
             <div class="col-md-4 text-md-end text-center mt-3 mt-md-0">
-                <a href="#" class="btn btn-warning btn-lg fw-bold hero-btn">Book Your Stay</a>
+                <a href="/reservation" class="btn btn-warning btn-lg fw-bold hero-btn">Book Your Stay</a>
             </div>
         </div>
     </div>

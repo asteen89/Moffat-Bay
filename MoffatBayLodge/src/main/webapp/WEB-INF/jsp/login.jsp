@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +48,7 @@
 
     </Style>
     <script>
-        // Function to show/hide password
+        // Javascript Function to show/hide password
         function myFunction() {
             var x = document.getElementById("myInput");
             if (x.type === "password") {
@@ -71,10 +72,10 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
             <c:if test="${not empty errorMessage}"><div class="alert alert-warning">${errorMessage}</div></c:if>
             <div class="container-sm">
-                <form method="post" action="/auth/login" class="mt-3">
+                <form method="post" action="${ctx}/auth/login" class="mt-3">
 
                     <div class="mb-3">
-                        <input type="email" class="form-control underlined" name="email" placeholder="Email Address" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
+                        <input type="email" class="form-control underlined" name="email" placeholder="Email" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
                     </div>
 
                     <div class="mb-4">
