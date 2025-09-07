@@ -17,7 +17,7 @@ public class HomeApi {
         this.db = db;
     }
 
-    // Landing page: example data fetch (adjust to your schema or remove if unused)
+    // Landing page
     @GetMapping("/rooms")
     public List<Map<String, Object>> rooms() {
         return db.queryForList(
