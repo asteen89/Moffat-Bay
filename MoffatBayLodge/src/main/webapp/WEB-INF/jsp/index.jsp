@@ -19,7 +19,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-3">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="#">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="${pageContext.request.contextPath}/">
             <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="logo">
         </a>
 
