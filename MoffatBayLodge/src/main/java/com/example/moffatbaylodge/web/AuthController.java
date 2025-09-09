@@ -1,4 +1,3 @@
-// src/main/java/com/example/moffatbaylodge/web/AuthController.java
 package com.example.moffatbaylodge.web;
 
 import com.example.moffatbaylodge.authentication.PassService;
@@ -7,6 +6,7 @@ import com.example.moffatbaylodge.session.AuthSession;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -23,8 +23,10 @@ public class AuthController {
 
 
     @ModelAttribute("auth")
-    public AuthSession authSession() {
-        return new AuthSession();
+    public AuthSession auth() {
+        AuthSession auth = new AuthSession();
+        auth.setAuthenticated(false);
+        return auth;
     }
 
     @GetMapping("/login")
@@ -38,9 +40,7 @@ public class AuthController {
                         @RequestParam(value = "email", required = false) String email,
                         @RequestParam(value = "username", required = false) String username,
                         @RequestParam String password,
-                        @ModelAttribute("auth") AuthSession auth, // <— get the session-backed POJO
-                        HttpSession session,
-                        RedirectAttributes ra) {
+                        @ModelAttribute("auth") AuthSession auth, HttpSession session, RedirectAttributes ra) {
 
         String emailAddr = (emailAddress != null && !emailAddress.isBlank()) ? emailAddress
                 : (email != null && !email.isBlank()) ? email
@@ -84,32 +84,46 @@ public class AuthController {
                            @RequestParam String emailAddress,
                            @RequestParam String phoneNumber,
                            @RequestParam String password,
+                           @ModelAttribute("auth") AuthSession auth,
                            RedirectAttributes ra) {
 
         String emailNorm = (emailAddress == null) ? null : emailAddress.trim().toLowerCase();
         if (emailNorm == null || !EMAIL_RX.matcher(emailNorm).matches()) {
-            // error message incase user does not enter a valid email using redirect attribute
             ra.addFlashAttribute("errorMessage", "Please enter a valid email address.");
             return "redirect:/auth/register";
         }
-        registrationHash.register(firstName, lastName, emailNorm, phoneNumber, password);
-        return "redirect:/auth/login?registered";
+
+        // Create the user (guestID)
+        Integer guestId = registrationHash.register(firstName, lastName, emailNorm, phoneNumber, password);
+
+        // Mark user as logged in for this session
+        auth.setAuthenticated(true);
+        auth.setEmail(emailNorm);
+        auth.setGuestId(guestId);
+
+        return "redirect:/"; // goes to home, button will now show Logout
     }
 
-    // LOGOUT (both GET and POST) logout button not created yet but will be done
+    // LOGOUT (both GET and POST) update to button to show login/logout on session change
     @PostMapping("/logout")
-    public String logoutPost(HttpSession session) {
+    public String logoutPost(HttpSession session, SessionStatus status) {
+        // Clear @SessionAttributes
+        status.setComplete(); // clears auth from session
+        // Remove attribute incase it gets stored in the session
         if (session != null) {
+            session.removeAttribute("auth");
             session.invalidate();
         }
-        return "redirect:/auth/login";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
-    public String logoutGet(HttpSession session) {
+    public String logoutGet(HttpSession session, SessionStatus status) {
+        status.setComplete();
         if (session != null) {
+            session.removeAttribute("auth");
             session.invalidate();
         }
-        return "redirect:/auth/login";
+        return "redirect:/";
     }
 }
