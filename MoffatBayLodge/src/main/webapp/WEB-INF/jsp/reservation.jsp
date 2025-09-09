@@ -48,9 +48,9 @@
                     <label class="form-label">Select Room Size</label>
                     <select class="form-select" name="roomSize" required>
                         <option value="">Select</option>
-                        <option value="single">Single</option>
                         <option value="double">Double</option>
-                        <option value="suite">Suite</option>
+                        <option value="queen">Queen</option>
+                        <option value="king">King</option>
                     </select>
                 </div>
                 <!-- Number of Guests -->
