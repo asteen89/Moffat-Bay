@@ -66,8 +66,9 @@
                     <label class="form-label">Select Room Size</label>
                     <select class="form-select" name="roomSize" required>
                         <option value="">Select</option>
-                        <option value="double">Double</option>
+                        <option value="doublefullbeds">Double Full Beds</option>
                         <option value="queen">Queen</option>
+                        <option value="doublequeenbeds">Double Queen Beds</option>
                         <option value="king">King</option>
                     </select>
                 </div>
