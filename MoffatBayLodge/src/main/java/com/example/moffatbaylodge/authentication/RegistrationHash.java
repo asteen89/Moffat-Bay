@@ -14,17 +14,18 @@ public class RegistrationHash {
         this.jdbc = jdbc;
     }
 // register with MYSQL requirements ,, storing hash password
-    public void register(String firstName,
-                         String lastName,
-                         String emailAddress,
-                         String phoneNumber,
-                         String rawPassword) {
+    public Integer register(String firstName,
+                            String lastName,
+                            String emailAddress,
+                            String phoneNumber,
+                            String rawPassword) {
         String hash = PasswordUtil.hashScrypt(rawPassword);
         jdbc.update(
                 "INSERT INTO `guests` (`FirstName`, `LastName`, `EmailAddress`, `PhoneNumber`, `Password`) " +
                         "VALUES (?, ?, ?, ?, ?)",
                 firstName, lastName, emailAddress, phoneNumber, hash
         );
+        return null;
     }
 }
 

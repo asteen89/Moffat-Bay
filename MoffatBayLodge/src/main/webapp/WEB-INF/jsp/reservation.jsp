@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,12 @@
 <body class="reservation-page">
 
 <!-- Navbar -->
+<!-- This will ensure that after logout happens, if user clicks back button it will still show login/register-->
+<%
+    response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); // HTTP1.1
+    response.setHeader("Pragma","no-cache"); // HTTP 1.0
+    response.setDateHeader("Expires", 0);    // Proxies
+%>
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
         <!-- Logo -->
@@ -32,7 +39,18 @@
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
             </ul>
-            <a href="login.jsp" class="btn-login">Login / Register</a>
+            <!-- Show Logout button upon logging in -->
+            <!-- If auth exists AND its authenticated flag is true,
+            then show the Logout button. Clicking it goes to /auth/logout,
+             which invalidates the session. AS-->
+            <c:choose>
+                <c:when test="${auth != null && auth.authenticated}">
+                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/login">Login / Register</a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>
