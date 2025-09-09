@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
             <ul class="navbar-nav ms-auto me-auto main-nav">
                 <li class="nav-item"><a href="#" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">Reservations</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
             </ul>
@@ -49,7 +50,7 @@
                 <p class="lead mb-4">Relax, explore and create lasting memories.</p>
             </div>
             <div class="col-md-4 text-md-end text-center mt-3 mt-md-0">
-                <a href="#" class="btn btn-warning btn-lg fw-bold hero-btn">Book Your Stay</a>
+                <a href="${pageContext.request.contextPath}/reservation" class="btn btn-warning btn-lg fw-bold hero-btn">Book Your Stay</a>
             </div>
         </div>
     </div>
@@ -158,7 +159,7 @@
         <!-- Bottom Links -->
         <div class="footer-links text-center mt-4 small">
             <a href="#">Attractions</a> |
-            <a href="#">Reservations</a> |
+            <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
             <a href="#">About Us</a> |
             <a href="${pageContext.request.contextPath}/login">Login</a> |
             <a href="#">My Reservation</a>
