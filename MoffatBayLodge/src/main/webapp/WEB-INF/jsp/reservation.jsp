@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="index.jsp">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="${pageContext.request.contextPath}/">
             <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="logo">
         </a>
 
@@ -26,9 +26,9 @@
         <!-- Menu Items -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-auto main-nav">
-                <li class="nav-item"><a href="${pageContext.request.contextPath}/index" class="nav-btn">Home</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn active">Reservations</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn active">Reservations</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
             </ul>
@@ -71,7 +71,7 @@
                 <!-- Buttons -->
                 <div class="form-actions mt-4">
                     <button type="submit" class="btn btn-warning fw-bold">Submit</button>
-                    <a href="${pageContext.request.contextPath}/index" class="btn btn-secondary">Cancel</a>
+                    <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>
         </div>
