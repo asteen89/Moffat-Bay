@@ -374,3 +374,47 @@ section.container.my-5 {
 .newsletter-text button:hover {
   background-color: #1da9ce;
 }
+
+/* -------------------
+   Reservation Page
+------------------- */
+body.reservation-page {
+  background-color: #f1f1f1;
+}
+
+/* Reservation Hero Background */
+.reservation-hero {
+  min-height: 70vh;
+  background: url("images/banner-landing.png") center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.reservation-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.reservation-card {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
