@@ -93,5 +93,10 @@
     </div>
 </div>
 </div>
-</body>
-</html>
+<jsp:include page="footer.jsp" />
+
+    </body>
+    </html>
+
+
+
