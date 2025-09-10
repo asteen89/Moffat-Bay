@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +18,15 @@
 <body>
 
 <!-- Navbar -->
+<!-- This will ensure that after logout happens, if user clicks back button it will still show login/register-->
+<%
+    response.setHeader("Cache-Control","no-cache, no-store, must-revalidate"); // HTTP1.1
+    response.setHeader("Pragma","no-cache"); // HTTP 1.0
+    response.setDateHeader("Expires", 0);    // Proxies
+%>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-3">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="#">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="${pageContext.request.contextPath}/">
             <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="logo">
         </a>
 
@@ -31,11 +39,22 @@
             <ul class="navbar-nav ms-auto me-auto main-nav">
                 <li class="nav-item"><a href="#" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">Reservations</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
             </ul>
-            <a href="${pageContext.request.contextPath}/login" class="btn-login">Login / Register</a>
+            <!-- Show Logout button upon logging in -->
+            <!-- If auth exists AND its authenticated flag is true,
+            then show the Logout button. Clicking it goes to /auth/logout,
+             which invalidates the session. AS-->
+            <c:choose>
+                <c:when test="${auth != null && auth.authenticated}">
+                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/login">Login / Register</a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>
@@ -49,7 +68,7 @@
                 <p class="lead mb-4">Relax, explore and create lasting memories.</p>
             </div>
             <div class="col-md-4 text-md-end text-center mt-3 mt-md-0">
-                <a href="#" class="btn btn-warning btn-lg fw-bold hero-btn">Book Your Stay</a>
+                <a href="${pageContext.request.contextPath}/reservation" class="btn btn-warning btn-lg fw-bold hero-btn">Book Your Stay</a>
             </div>
         </div>
     </div>
@@ -158,7 +177,7 @@
         <!-- Bottom Links -->
         <div class="footer-links text-center mt-4 small">
             <a href="#">Attractions</a> |
-            <a href="#">Reservations</a> |
+            <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
             <a href="#">About Us</a> |
             <a href="${pageContext.request.contextPath}/login">Login</a> |
             <a href="#">My Reservation</a>

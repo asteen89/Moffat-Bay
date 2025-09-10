@@ -2,13 +2,16 @@ package com.example.moffatbaylodge.web;
 
 import com.example.moffatbaylodge.authentication.PassService;
 import com.example.moffatbaylodge.authentication.RegistrationHash;
+import com.example.moffatbaylodge.session.AuthSession;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth")
+@SessionAttributes("auth") // store the auth model attribute in HTTP session
 public class AuthController {
     private final RegistrationHash registrationHash;
     private final PassService passService;
@@ -16,6 +19,14 @@ public class AuthController {
     public AuthController(RegistrationHash registrationHash, PassService passService) {
         this.registrationHash = registrationHash;
         this.passService = passService;
+    }
+
+
+    @ModelAttribute("auth")
+    public AuthSession auth() {
+        AuthSession auth = new AuthSession();
+        auth.setAuthenticated(false);
+        return auth;
     }
 
     @GetMapping("/login")
@@ -26,17 +37,16 @@ public class AuthController {
     // Set up with error message in case invalid email/password is attempted
     @PostMapping("/login")
     public String login(@RequestParam(value = "emailAddress", required = false) String emailAddress,
-                        @RequestParam(value = "email",        required = false) String email,
-                        @RequestParam(value = "username",     required = false) String username,
+                        @RequestParam(value = "email", required = false) String email,
+                        @RequestParam(value = "username", required = false) String username,
                         @RequestParam String password,
-                        HttpSession session,
-                        RedirectAttributes ra) {
+                        @ModelAttribute("auth") AuthSession auth, HttpSession session, RedirectAttributes ra) {
 
         String emailAddr = (emailAddress != null && !emailAddress.isBlank()) ? emailAddress
                 : (email != null && !email.isBlank()) ? email
                 : (username != null && !username.isBlank()) ? username
                 : null;
-
+        // error check again
         if (emailAddr == null || password.isBlank()) {
             ra.addFlashAttribute("errorMessage", "Please enter your email/username and password.");
             return "redirect:/auth/login";
@@ -48,15 +58,23 @@ public class AuthController {
             return "redirect:/auth/login";
         }
 
+        // authenticated in the @SessionAttributes
+        auth.setAuthenticated(true);
+        auth.setEmail(emailAddr.trim().toLowerCase());
+        auth.setGuestId(guestId);
+
+
         session.setAttribute("guestId", guestId);
+
         return "redirect:/";
     }
 
     @GetMapping("/register")
     public String showRegister() {
-        return "registration"; // view name: registration.jsp
+        return "registration"; // registration.jsp
     }
 
+    // setting up to catch invalid email entry
     private static final java.util.regex.Pattern EMAIL_RX =
             java.util.regex.Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
@@ -66,52 +84,46 @@ public class AuthController {
                            @RequestParam String emailAddress,
                            @RequestParam String phoneNumber,
                            @RequestParam String password,
+                           @ModelAttribute("auth") AuthSession auth,
                            RedirectAttributes ra) {
 
-        String email = (emailAddress == null) ? null : emailAddress.trim().toLowerCase();
-        // error message incase wrong email format input
-        if (email == null || !EMAIL_RX.matcher(email).matches()) {
+        String emailNorm = (emailAddress == null) ? null : emailAddress.trim().toLowerCase();
+        if (emailNorm == null || !EMAIL_RX.matcher(emailNorm).matches()) {
             ra.addFlashAttribute("errorMessage", "Please enter a valid email address.");
             return "redirect:/auth/register";
         }
-        // Registration hashing
-        registrationHash.register(firstName, lastName, email, phoneNumber, password);
 
-        return "redirect:/auth/login?registered";
-    }
-// Session Management
-    @GetMapping("/session/create")
-    @ResponseBody
-    public String create(HttpSession session) {
-        session.setAttribute("guestId", 123); // demo value
-        return "created sid=" + session.getId();
-    }
+        // Create the user (guestID)
+        Integer guestId = registrationHash.register(firstName, lastName, emailNorm, phoneNumber, password);
 
-    @GetMapping("/session/get")
-    @ResponseBody
-    public String get(HttpSession session) {
-        Object gid = session.getAttribute("guestId");
-        return (gid == null) ? "no session data" : "guestId=" + gid;
+        // Mark user as logged in for this session
+        auth.setAuthenticated(true);
+        auth.setEmail(emailNorm);
+        auth.setGuestId(guestId);
+
+        return "redirect:/"; // goes to home, button will now show Logout
     }
 
-    @GetMapping("/session/invalidate")
-    @ResponseBody
-    public String invalidate(HttpSession session) {
-        session.invalidate();
-        return "invalidated";
-    }
-
-    //LOGOUT // no logout page set up yet or button, will adjust that as necessary
-
+    // LOGOUT (both GET and POST) update to button to show login/logout on session change
     @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        if (session != null) session.invalidate();
-        return "redirect:/auth/login";
+    public String logoutPost(HttpSession session, SessionStatus status) {
+        // Clear @SessionAttributes
+        status.setComplete(); // clears auth from session
+        // Remove attribute incase it gets stored in the session
+        if (session != null) {
+            session.removeAttribute("auth");
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
-    public String logoutGet(HttpSession session) {
-        if (session != null) session.invalidate();
-        return "redirect:/auth/login";
+    public String logoutGet(HttpSession session, SessionStatus status) {
+        status.setComplete();
+        if (session != null) {
+            session.removeAttribute("auth");
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 }
