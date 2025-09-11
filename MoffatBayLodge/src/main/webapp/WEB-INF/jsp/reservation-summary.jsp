@@ -98,6 +98,12 @@
       <h1 class="display-6 text-center mb-4">RESERVATION SUMMARY</h1>
 
       <!-- Display Summary-->
+        <div class="container px-0">
+            <div class="row kv-row">
+                <div class="col-5 col-md-4 kv-label">Reservation ID</div>
+                <div class="col kv-value"><c:out value="${reservationId}" default="—"/></div>
+            </div>
+
       <div class="container px-0">
         <div class="row kv-row">
           <div class="col-5 col-md-4 kv-label">Room Size</div>
