@@ -60,18 +60,19 @@
     <div class="col-md-6 col-lg-5">
         <div class="card reservation-card shadow-lg p-4">
             <h2 class="text-center fw-bold mb-4">BOOK YOUR VACATION</h2>
-            <form action="processReservation.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/reservation" method="post">
+                <!-- Room Size -->
                 <!-- Room Size -->
                 <div class="mb-3">
                     <label class="form-label">Select Room Size</label>
-                    <select class="form-select" name="roomSize" required>
+                    <select class="form-select" name="roomId" required>
                         <option value="">Select</option>
-                        <option value="doublefullbeds">Double Full Beds</option>
-                        <option value="queen">Queen</option>
-                        <option value="doublequeenbeds">Double Queen Beds</option>
-                        <option value="king">King</option>
+                        <c:forEach var="r" items="${roomSizes}">
+                            <option value="${r.roomID}">${r.roomSize} — <fmt:formatNumber value="${r.roomPrice}" type="currency"/></option>
+                        </c:forEach>
                     </select>
                 </div>
+
                 <!-- Number of Guests -->
                 <div class="mb-3">
                     <label class="form-label">Number of Guests</label>
