@@ -41,12 +41,12 @@
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
+                <li class="nav-item"><a href="/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
             <!-- If auth exists AND its authenticated flag is true,
             then show the Logout button. Clicking it goes to /auth/logout,
-             which invalidates the session. AS-->
+             which invalidates th   e session. AS-->
             <c:choose>
                 <c:when test="${auth != null && auth.authenticated}">
                     <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
