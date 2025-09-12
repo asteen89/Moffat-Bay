@@ -102,6 +102,7 @@
             <div class="row kv-row">
                 <div class="col-5 col-md-4 kv-label">Reservation ID</div>
                 <div class="col kv-value"><c:out value="${reservation.reservationID}" default="—"/></div>
+
             </div>
 
       <div class="container px-0">
