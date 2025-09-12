@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="reservation-page">
-
 <!-- Navbar -->
 <!-- This will ensure that after logout happens, if user clicks back button it will still show login/register-->
 <%
@@ -37,7 +36,7 @@
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn active">Reservations</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
             <!-- If auth exists AND its authenticated flag is true,
@@ -60,7 +59,7 @@
     <div class="col-md-6 col-lg-5">
         <div class="card reservation-card shadow-lg p-4">
             <h2 class="text-center fw-bold mb-4">BOOK YOUR VACATION</h2>
-            <form action="${pageContext.request.contextPath}/reservation" method="post">
+            <form method="post" action="/reservation/preview">
                 <!-- Room Size -->
                 <!-- Room Size -->
                 <div class="mb-3">
@@ -89,6 +88,13 @@
                     <input type="date" class="form-control" name="checkout" required>
                 </div>
                 <!-- Buttons -->
+                <!-- Error incase dates are entered incorrectly-->
+                <c:if test="${not empty errorMessage}">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            ${errorMessage}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </c:if>
                 <div class="form-actions mt-4">
                     <button type="submit" class="btn btn-warning fw-bold">Submit</button>
                     <a href="${pageContext.request.contextPath}/" class="btn btn-secondary">Cancel</a>
@@ -105,9 +111,9 @@
             <!-- Bottom Links -->
             <div class="text-center mt-4 small">
                 <a href="#">Attractions</a> |
-                <a href="#">Reservations</a> |
-                <a href="#">About Us</a> |
-                <a href="#">Log In</a> |
+                <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
+                <a href="${pageContext.request.contextPath}/about">About Us</a> |
+                <a href="${pageContext.request.contextPath}/login">Log In</a> |
                 <a href="#">My Reservations</a>
                 <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
             </div>

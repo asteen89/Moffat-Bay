@@ -7,8 +7,8 @@
   
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +73,7 @@
         <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
         <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
         <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
-        <li class="nav-item"><a href="#" class="nav-btn">About Us</a></li>
+        <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
       </ul>
         <!-- Show Logout button upon logging in -->
         <!-- If auth exists AND its authenticated flag is true,
@@ -98,65 +98,105 @@
       <h1 class="display-6 text-center mb-4">RESERVATION SUMMARY</h1>
 
       <!-- Display Summary-->
+        <div class="container px-0">
+            <div class="row kv-row">
+                <div class="col-5 col-md-4 kv-label">Reservation ID</div>
+                <div class="col kv-value"><c:out value="${reservation.reservationID}" default="—"/></div>
+
+            </div>
+
       <div class="container px-0">
         <div class="row kv-row">
           <div class="col-5 col-md-4 kv-label">Room Size</div>
-          <div class="col kv-value"><c:out value="${roomSize}" default="—"/></div>
+              <div class="col kv-value">
+                  <c:out value="${reservation.room.roomSize}" default="—"/>
+              </div>
         </div>
 
-        <div class="row kv-row">
-          <div class="col-5 col-md-4 kv-label">Guests</div>
-          <div class="col kv-value"><c:out value="${guests}" default="—"/></div>
-        </div>
+          <div class="row kv-row">
+              <div class="col-5 col-md-4 kv-label">Guests</div>
+              <div class="col kv-value">
+                  <c:out value="${reservation.numberOfGuests}" default="—"/>
+              </div>
+          </div>
 
 <!-- Check-in -->
-<div class="row kv-row">
-  <div class="col-5 col-md-4 kv-label">Check-in</div>
-  <div class="col kv-value"><c:out value="${checkIn}" default="—"/></div>
-</div>
+          <div class="row kv-row">
+              <div class="col-5 col-md-4 kv-label">Check-in</div>
+              <div class="col kv-value">${checkIn}</div>
+          </div>
 
 <!-- Check-out -->
-<div class="row kv-row">
-  <div class="col-5 col-md-4 kv-label">Check-out</div>
-  <div class="col kv-value"><c:out value="${checkOut}" default="—"/></div>
-</div>
+          <div class="row kv-row">
+              <div class="col-5 col-md-4 kv-label">Check-in</div>
+              <div class="col kv-value">${checkOut}</div>
+          </div>
 
         <div class="row kv-row">
           <div class="col-5 col-md-4 kv-label">Nights</div>
           <div class="col kv-value"><c:out value="${nights}" default="—"/></div>
         </div>
 
-        <div class="row kv-row totals-row">
-          <div class="col-5 col-md-4 kv-label">Total</div>
-          <div class="col kv-value">
-            <c:choose>
-              <c:when test="${not empty total}">
-                <fmt:formatNumber value="${total}" type="currency"/>
-              </c:when>
-              <c:otherwise>—</c:otherwise>
-            </c:choose>
+<!-- Price -->
+          <fmt:setLocale value="en_US"/>
+          <div class="row kv-row totals-row">
+              <div class="col-5 col-md-4 kv-label">Total</div>
+              <div class="col kv-value">
+                  <c:choose>
+                      <c:when test="${not empty reservation.totalPrice}">
+                          <fmt:formatNumber value="${reservation.totalPrice}" type="currency"/>
+                      </c:when>
+                      <c:otherwise>—</c:otherwise>
+                  </c:choose>
+              </div>
           </div>
-        </div>
       </div>
 
-<!--  Buttons -->
-<div class="d-flex justify-content-center gap-2 mt-4">
-  <form action="${pageContext.request.contextPath}/reservations/confirm" method="post" class="d-inline">
-    <c:if test="${not empty reservationId}">
-      <input type="hidden" name="reservationId" value="${reservationId}">
-    </c:if>
-    <button type="submit" class="btn btn-warning fw-bold px-4">Submit</button>
-  </form>
-  <a href="${pageContext.request.contextPath}/reservation" class="btn btn-secondary px-4">Cancel</a>
-</div>
-</div>
+        <!--  Buttons -->
+        <!-- Before save show Submit / Cancel -->
+        <!-- Show buttons only befopre save when no ReservationID yet -->
+        <!-- Will show reservation ID once the ID is created in the database -->
+            <div class="d-flex flex-column align-items-center gap-2 mt-4">
+
+                <!-- Flash messages  -->
+                <c:if test="${not empty successMessage}">
+                <div class="alert alert-success alert-dismissible fade show w-100 text-center" role="alert">
+                        ${successMessage}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                </c:if>
+
+                <c:if test="${not empty errorMessage}">
+                <div class="alert alert-danger alert-dismissible fade show w-100 text-center" role="alert">
+                        ${errorMessage}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                </c:if>
+
+                <!-- Action buttons  -->
+                <c:if test="${showActions}">
+                <div class="d-flex justify-content-center align-items-center gap-2 mt-4 flex-wrap">
+                    <form method="post" action="/reservation/confirm" class="m-0">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                        <button type="submit" class="btn btn-warning fw-bold px-4"
+                                onclick="this.disabled=true; this.form.submit();">
+                            Confirm
+                        </button>
+                    </form>
+
+                    <form method="post" action="/reservation/cancel" class="m-0">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                        <button type="submit" class="btn btn-secondary px-4">Cancel</button>
+                    </form>
+                </div>
+                </c:if>
 </header>
 
 <!-- Footer -->
     <div class="footer-links text-center mt-4 small">
       <a href="#">Attractions</a> |
       <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
-      <a href="#">About Us</a> |
+      <a href="${pageContext.request.contextPath}/about">About Us</a> |
       <a href="${pageContext.request.contextPath}/login">Login</a> |
       <a href="#">My Reservation</a>
       <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
