@@ -37,11 +37,11 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-auto main-nav">
-                <li class="nav-item"><a href="#" class="nav-btn">Home</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/home" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
-                <li class="nav-item"><a href="/about" class="nav-btn">About Us</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
             <!-- If auth exists AND its authenticated flag is true,
@@ -178,7 +178,7 @@
         <div class="footer-links text-center mt-4 small">
             <a href="#">Attractions</a> |
             <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
-            <a href="#">About Us</a> |
+            <a href="${pageContext.request.contextPath}/about">About Us</a> |
             <a href="${pageContext.request.contextPath}/login">Login</a> |
             <a href="#">My Reservation</a>
             <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
