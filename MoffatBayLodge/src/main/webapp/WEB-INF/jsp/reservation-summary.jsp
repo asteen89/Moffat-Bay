@@ -180,7 +180,7 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <button type="submit" class="btn btn-warning fw-bold px-4"
                                 onclick="this.disabled=true; this.form.submit();">
-                            Confirm
+                            Submit
                         </button>
                     </form>
 
