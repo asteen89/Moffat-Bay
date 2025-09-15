@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>About Us • Moffat Bay Lodge</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="aboutus.css?v=<%=System.currentTimeMillis()%>">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css?v=5<%=System.currentTimeMillis()%>">
 </head>
 <body>
 
@@ -19,19 +19,22 @@
 %>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom py-3">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="index.jsp">
-            <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="logo me-2">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="${pageContext.request.contextPath}/">
+            <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto main-nav">
-                <li class="nav-item"><a class="nav-link nav-btn" href="${pageContext.request.contextPath}/">Home</a></li>
-                <li class="nav-item"><a class="nav-link nav-btn" href="attractions.jsp">Attractions</a></li>
-                <li class="nav-item"><a class="nav-link nav-btn" href="${pageContext.request.contextPath}/reservation">Reservations</a></li>
-                <li class="nav-item"><a class="nav-link nav-btn" href="my-reservations.jsp">My Reservation</a></li>
-                <li class="nav-item"><a class="nav-link nav-btn active" href="${pageContext.request.contextPath}/about">About Us</a></li>
+            <ul class="navbar-nav ms-auto me-auto main-nav">
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
+                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
             <!-- If auth exists AND its authenticated flag is true,
@@ -62,7 +65,7 @@
             Contact us to learn more about our special rates and discounts we offer throughout the year. We would
             love to help plan your next getaway to Moffat Bay Lodge!
         </p>
-        <a href="reservations.jsp" class="btn btn-warning fw-bold px-4 py-2">BOOK NOW!</a>
+        <a href="${pageContext.request.contextPath}/reservation" class="btn btn-warning fw-bold px-4 py-2">BOOK NOW!</a>
 
         <!-- Contact strip -->
         <section class="about-contact mt-4">
@@ -98,11 +101,11 @@
 <!-- Inline footer (no separate JSP include) -->
 <footer class="shared-footer text-center py-3 mt-5">
     <div class="container">
-        <a href="attractions.jsp" class="footer-link">Attractions</a> |
-        <a href="reservations.jsp" class="footer-link">Reservations</a> |
-        <a href="about.jsp" class="footer-link">About Us</a> |
-        <a href="login.jsp" class="footer-link">Log In</a> |
-        <a href="myreservation.jsp" class="footer-link">My Reservations</a>
+        <a href="#" class="footer-link">Attractions</a> |
+        <a href="${pageContext.request.contextPath}/reservation" class="footer-link">Reservations</a> |
+        <a href="${pageContext.request.contextPath}/about" class="footer-link">About Us</a> |
+        <a href="${pageContext.request.contextPath}/login" class="footer-link">Log In</a> |
+        <a href="#" class="footer-link">My Reservations</a>
         <p class="mt-2 mb-0 small text-black">&copy; 2025 Moffat Bay Lodge</p>
     </div>
 </footer>

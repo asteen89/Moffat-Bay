@@ -46,7 +46,7 @@
             <!-- Show Logout button upon logging in -->
             <!-- If auth exists AND its authenticated flag is true,
             then show the Logout button. Clicking it goes to /auth/logout,
-             which invalidates th   e session. AS-->
+             which invalidates the session. AS-->
             <c:choose>
                 <c:when test="${auth != null && auth.authenticated}">
                     <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
