@@ -144,61 +144,14 @@
 </header>
 
 <!-- Footer -->
-<footer class="footer py-5">
-  <div class="container">
-    <div class="row text-center text-md-start align-items-stretch">
-      <div class="col-md-3 mb-4 mb-md-0">
-        <div class="footer-social text-center">
-          <h6 class="fw-bold footer-heading">Follow us</h6>
-          <div class="social-icons mt-3">
-            <a href="#"><i class="bi bi-facebook fs-4 me-3"></i></a>
-            <a href="#"><i class="bi bi-google fs-4 me-3"></i></a>
-            <a href="#"><i class="bi bi-twitter fs-4"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="newsletter-box">
-          <div class="newsletter-content">
-            <div class="newsletter-logo">
-              <a href="${pageContext.request.contextPath}/">
-                <img src="${pageContext.request.contextPath}/images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="img-fluid">
-              </a>
-            </div>
-
-            <div class="newsletter-text">
-              <h6 class="fw-bold">Subscribe to our Newsletter!</h6>
-              <p class="small mb-3">Stay connected with us!<br>Join our mailing list to receive updates and special discounts.</p>
-
-              <form id="newsletterForm" class="d-flex" novalidate>
-                <input id="newsletterEmail" type="email" class="form-control me-2" placeholder="Your Email" required>
-                <button type="submit" class="btn btn-info text-white fw-bold w-100">Subscribe</button>
-              </form>
-              <small id="newsletterMsg" class="d-block mt-2"></small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3 mb-4 mb-md-0 text-center footer-reviews">
-        <h6 class="fw-bold footer-heading">Reviews</h6>
-        <div class="footer-box">
-          <p class="mb-0 rating">5.0</p>
-          <p class="mb-0 stars" style="color:#fbc02d;">⭐⭐⭐⭐⭐</p>
-        </div>
-      </div>
-    </div>
-
     <div class="footer-links text-center mt-4 small">
       <a href="#">Attractions</a> |
       <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
-      <a href="#">About Us</a> |
+      <a href="${pageContext.request.contextPath}/about">About Us</a> |
       <a href="${pageContext.request.contextPath}/login">Login</a> |
       <a href="#">My Reservation</a>
       <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
     </div>
-  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
