@@ -40,7 +40,7 @@
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="reservation-lookup.jsp" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
@@ -138,21 +138,23 @@
 
             <!-- Newsletter -->
             <div class="col-md-6 mb-4 mb-md-0">
-                <div class="newsletter-box">
+                <div class="newsletter-box position-relative">
+                    <!--salmon image-->
+                    <img src="images/SalishSalmon.png"
+                         alt="Salmon Art"
+                         class="newsletter-salmon">
                     <div class="newsletter-content">
                         <div class="newsletter-logo">
-                            <a href="index.jsp">
+                            <a href="${pageContext.request.contextPath}/">
                                 <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="img-fluid">
                             </a>
                         </div>
-
                         <div class="newsletter-text">
                             <h6 class="fw-bold">Subscribe to our Newsletter!</h6>
                             <p class="small mb-3">
                                 Stay connected with us!<br>
                                 Join our mailing list to receive updates and special discounts.
                             </p>
-
                             <!-- Newsletter form -->
                             <form id="newsletterForm" class="d-flex" novalidate>
                                 <input id="newsletterEmail" type="email" class="form-control me-2" placeholder="Your Email" required>
@@ -163,6 +165,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Reviews -->
             <div class="col-md-3 mb-4 mb-md-0 text-center footer-reviews">

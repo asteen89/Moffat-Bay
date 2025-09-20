@@ -374,6 +374,19 @@ section.container.my-5 {
 .newsletter-text button:hover {
   background-color: #1da9ce;
 }
+.newsletter-box {
+  position: relative;
+  padding-left: 60px;
+}
+
+.newsletter-salmon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 40px;
+  opacity: 0.9;
+}
+
 
 /* -------------------
    Reservation Page
