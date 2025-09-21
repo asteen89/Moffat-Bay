@@ -35,7 +35,7 @@
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn active">Reservations</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservations/lookup" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
@@ -114,7 +114,7 @@
                 <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
                 <a href="${pageContext.request.contextPath}/about">About Us</a> |
                 <a href="${pageContext.request.contextPath}/login">Log In</a> |
-                <a href="#">My Reservations</a>
+                <a href="${pageContext.request.contextPath}/reservations/lookup">My Reservations</a>
                 <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
             </div>
         </div>

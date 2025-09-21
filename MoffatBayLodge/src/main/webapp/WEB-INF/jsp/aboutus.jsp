@@ -33,7 +33,7 @@
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservations/lookup" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
@@ -105,7 +105,7 @@
         <a href="${pageContext.request.contextPath}/reservation" class="footer-link">Reservations</a> |
         <a href="${pageContext.request.contextPath}/about" class="footer-link">About Us</a> |
         <a href="${pageContext.request.contextPath}/login" class="footer-link">Log In</a> |
-        <a href="#" class="footer-link">My Reservations</a>
+        <a href="${pageContext.request.contextPath}/reservations/lookup" class="footer-link">My Reservations</a>
         <p class="mt-2 mb-0 small text-black">&copy; 2025 Moffat Bay Lodge</p>
     </div>
 </footer>

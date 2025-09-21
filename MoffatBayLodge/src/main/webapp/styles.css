@@ -374,6 +374,19 @@ section.container.my-5 {
 .newsletter-text button:hover {
   background-color: #1da9ce;
 }
+.newsletter-box {
+  position: relative;
+  padding-left: 60px;
+}
+
+.newsletter-salmon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 40px;
+  opacity: 0.9;
+}
+
 
 /* -------------------
    Reservation Page
@@ -418,3 +431,38 @@ body.reservation-page {
   gap: 25px;
 }
 
+/* -------------------
+   Reservation Lookup / Modify
+------------------- */
+.hero-compact {
+  background-image: url('../images/banner-landing.png');
+  background-size: cover;
+  background-position: center;
+  padding: 40px 0 60px;
+}
+
+.summary-card {
+  max-width: 860px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 24px rgba(0,0,0,.15);
+}
+
+.summary-card h1 {
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.kv-row {
+  padding: .65rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kv-label {
+  font-weight: 700;
+  color: #374151;
+}
+
+.kv-value {
+  color: #111827;
+}
