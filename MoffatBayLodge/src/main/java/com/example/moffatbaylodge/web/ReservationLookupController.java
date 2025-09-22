@@ -4,12 +4,14 @@ import com.example.moffatbaylodge.accessingdatamysql.Reservation;
 import com.example.moffatbaylodge.accessingdatamysql.ReservationRepository;
 import com.example.moffatbaylodge.accessingdatamysql.User;
 import com.example.moffatbaylodge.accessingdatamysql.UserRepository;
+import com.example.moffatbaylodge.session.AuthSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -34,8 +36,13 @@ public class ReservationLookupController {
             @RequestParam(value = "email", required = false) String email,
             @RequestParam(value = "success", required = false) String successMessage,
             @RequestParam(value = "error", required = false) String errorMessage,
-            Model model
+            Model model,
+            HttpSession session
     ) {
+        AuthSession auth = (AuthSession) session.getAttribute("auth");
+        String redirect = GuardedPages.require(auth, "/reservations/lookup");
+        if (redirect != null) return redirect;
+
         boolean searched = false;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
@@ -77,8 +84,13 @@ public class ReservationLookupController {
     @GetMapping("/reservations/manage")
     public String manageReservation(
             @RequestParam("conf") Integer reservationId,
-            Model model
+            Model model,
+            HttpSession session
     ) {
+        AuthSession auth = (AuthSession) session.getAttribute("auth");
+        String redirect = GuardedPages.require(auth, "/reservations/manage?conf=" + reservationId);
+        if (redirect != null) return redirect;
+
         Optional<Reservation> reservationOpt = reservationRepo.findById(reservationId);
         if (reservationOpt.isEmpty()) {
             model.addAttribute("error", "Reservation not found.");
@@ -101,8 +113,13 @@ public class ReservationLookupController {
             @RequestParam("checkinDate") String checkinDate,
             @RequestParam("checkoutDate") String checkoutDate,
             @RequestParam("numberOfGuests") Integer guests,
-            Model model
+            Model model,
+            HttpSession session
     ) {
+        AuthSession auth = (AuthSession) session.getAttribute("auth");
+        String redirect = GuardedPages.require(auth, "/reservations/manage?conf=" + reservationId);
+        if (redirect != null) return redirect;
+
         Optional<Reservation> reservationOpt = reservationRepo.findById(reservationId);
         if (reservationOpt.isEmpty()) {
             model.addAttribute("error", "Reservation not found.");
@@ -127,8 +144,13 @@ public class ReservationLookupController {
     // ================= Cancel Reservation =================
     @GetMapping("/reservations/cancel")
     public String cancelReservation(
-            @RequestParam("conf") Integer reservationId
+            @RequestParam("conf") Integer reservationId,
+            HttpSession session
     ) {
+        AuthSession auth = (AuthSession) session.getAttribute("auth");
+        String redirect = GuardedPages.require(auth, "/reservations/cancel?conf=" + reservationId);
+        if (redirect != null) return redirect;
+
         Optional<Reservation> reservationOpt = reservationRepo.findById(reservationId);
         if (reservationOpt.isEmpty()) {
             return "redirect:/reservations/lookup?error=Reservation+not+found";

@@ -29,7 +29,15 @@
                 <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
-            <a href="${pageContext.request.contextPath}/login" class="btn-login">Login / Register</a>
+            <!-- Show Logout if logged in, otherwise Login/Register -->
+            <c:choose>
+                <c:when test="${not empty sessionScope.auth}">
+                    <a href="${pageContext.request.contextPath}/logout" class="btn-login">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/login" class="btn-login">Login / Register</a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>
