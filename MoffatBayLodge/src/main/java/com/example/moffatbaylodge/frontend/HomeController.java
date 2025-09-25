@@ -9,26 +9,19 @@ public class HomeController {
     // GET /
     @GetMapping("/")
     public String home() {
-        return "index";          // /WEB-INF/jsp/index.jsp
+        return "index"; // directs to /WEB-INF/jsp/index.jsp
     }
 
     // GET /login
     @GetMapping("/login")
     public String login() {
-        return "login";          // /WEB-INF/jsp/login.jsp
+        return "login"; // directs to /WEB-INF/jsp/login.jsp
     }
 
-    // GET /registration
+
+    // GET /register
     @GetMapping("/registration")
     public String registration() {
-        return "registration";   // /WEB-INF/jsp/registration.jsp
-    }
-
-    // GET /attractions
-    @GetMapping("/attractions")
-    public String attractions() {
-        return "attractions";    // -> /WEB-INF/jsp/attractions.jsp
+        return "registration";
     }
 }
-
-
