@@ -5,10 +5,14 @@ import com.example.moffatbaylodge.accessingdatamysql.RoomSize;
 import com.example.moffatbaylodge.accessingdatamysql.RoomSizeRepository;
 import com.example.moffatbaylodge.services.ReservationServices;
 import com.example.moffatbaylodge.session.AuthSession;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,21 +38,29 @@ public class ReservationController {
     @GetMapping("/reservation")
     public String reservation(@ModelAttribute("auth") AuthSession auth,
                               HttpSession session,
+                              HttpServletRequest request,   // <-- add
                               ModelMap model) {
+
+        // Resolve auth from session if needed
         if (auth == null || auth.getGuestId() == null) {
             AuthSession sessionAuth = (AuthSession) session.getAttribute("auth");
-            if (sessionAuth != null) {
-                auth = sessionAuth;
-                model.addAttribute("auth", auth);
+            if (sessionAuth == null || sessionAuth.getGuestId() == null) {
+                // Not logged in, build next and redirect to login
+                String qs   = request.getQueryString();
+                String next = request.getRequestURI() + (qs != null ? "?" + qs : "");
+                String enc  = URLEncoder.encode(next, StandardCharsets.UTF_8);
+                return "redirect:/auth/login?next=" + enc;
             }
+            auth = sessionAuth;
+            model.addAttribute("auth", auth);
         }
 
-        String gate = GuardedPages.require(auth, "/reservation");
-        if (gate != null) return gate;
+        // String gate = GuardedPages.require(auth, "/reservation");
+        // if (gate != null) return gate;
 
         List<RoomSize> roomSizes = roomRepo.findAll();
         model.addAttribute("roomSizes", roomSizes);
-        return "reservation"; // /WEB-INF/jsp/reservation.jsp
+        return "reservation";
     }
 
     // User submits the form, build the pending reservation as a preview, then redirect to confirm
@@ -90,10 +102,15 @@ public class ReservationController {
     @GetMapping("/reservation/confirm")
     public String confirm(@ModelAttribute("auth") AuthSession auth,
                           HttpSession session,
+                          HttpServletRequest request,   // keep this
                           ModelMap model) {
 
-        String gate = GuardedPages.require(auth, "/reservation/confirm");
-        if (gate != null) return gate;
+        // If not logged in, send to login with ?next=/reservation/confirm
+        if (auth == null || auth.getGuestId() == null) {
+            String next = request.getRequestURI(); // "/reservation/confirm"
+            String enc  = URLEncoder.encode(next, StandardCharsets.UTF_8);
+            return "redirect:/auth/login?next=" + enc;
+        }
 
         Reservation pending = (Reservation) session.getAttribute("pendingReservation");
         if (pending == null) return "redirect:/reservation?error=expired";
@@ -111,14 +128,11 @@ public class ReservationController {
         model.addAttribute("nights", nights);
         model.addAttribute("roomSize", pending.getRoom() != null ? pending.getRoom().getRoomSize() : null);
         model.addAttribute("guests", pending.getNumberOfGuests());
-        // fixed the date format to show month, day and then year
         model.addAttribute("checkIn",  DATE_FMT.format(pending.getCheckinDate()));
         model.addAttribute("checkOut", DATE_FMT.format(pending.getCheckoutDate()));
         model.addAttribute("total", pending.getTotalPrice());
-
         model.addAttribute("showActions", true);
         return "reservation-summary";
-
     }
 
     // user clicks Confirm "submit" go to saved summary
