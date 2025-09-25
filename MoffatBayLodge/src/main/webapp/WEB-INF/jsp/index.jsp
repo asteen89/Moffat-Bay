@@ -40,13 +40,13 @@
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservations/lookup" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout button upon logging in -->
             <!-- If auth exists AND its authenticated flag is true,
             then show the Logout button. Clicking it goes to /auth/logout,
-             which invalidates th   e session. AS-->
+             which invalidates the session. AS-->
             <c:choose>
                 <c:when test="${auth != null && auth.authenticated}">
                     <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
@@ -139,21 +139,23 @@
 
             <!-- Newsletter -->
             <div class="col-md-6 mb-4 mb-md-0">
-                <div class="newsletter-box">
+                <div class="newsletter-box position-relative">
+                    <!--salmon image-->
+                    <img src="images/SalishSalmon.png"
+                         alt="Salmon Art"
+                         class="newsletter-salmon">
                     <div class="newsletter-content">
                         <div class="newsletter-logo">
-                            <a href="index.jsp">
+                            <a href="${pageContext.request.contextPath}/">
                                 <img src="images/MoffatBayLogo.png" alt="Moffat Bay Lodge Logo" class="img-fluid">
                             </a>
                         </div>
-
                         <div class="newsletter-text">
                             <h6 class="fw-bold">Subscribe to our Newsletter!</h6>
                             <p class="small mb-3">
                                 Stay connected with us!<br>
                                 Join our mailing list to receive updates and special discounts.
                             </p>
-
                             <!-- Newsletter form -->
                             <form id="newsletterForm" class="d-flex" novalidate>
                                 <input id="newsletterEmail" type="email" class="form-control me-2" placeholder="Your Email" required>
@@ -164,6 +166,7 @@
                     </div>
                 </div>
             </div>
+
 
             <!-- Reviews -->
             <div class="col-md-3 mb-4 mb-md-0 text-center footer-reviews">
@@ -181,7 +184,7 @@
             <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
             <a href="${pageContext.request.contextPath}/about">About Us</a> |
             <a href="${pageContext.request.contextPath}/login">Login</a> |
-            <a href="#">My Reservation</a>
+            <a href="${pageContext.request.contextPath}/reservations/lookup">My Reservation</a>
             <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
         </div>
     </div>
