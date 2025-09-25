@@ -67,7 +67,7 @@
                     <select class="form-select" name="roomId" required>
                         <option value="">Select</option>
                         <c:forEach var="r" items="${roomSizes}">
-                            <option value="${r.roomID}">${r.roomSize} — <fmt:formatNumber value="${r.roomPrice}" type="currency"/></option>
+                            <option value="${r.roomId}">${r.roomSize} — <fmt:formatNumber value="${r.roomPrice}" type="currency"/></option>
                         </c:forEach>
                     </select>
                 </div>
