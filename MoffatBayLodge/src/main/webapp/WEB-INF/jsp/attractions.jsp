@@ -11,6 +11,8 @@
 
   <!-- Shared styles -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css" />
+<!-- Attractions page styles -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/attractions.css" />
 </head>
 <body>
 
@@ -55,7 +57,7 @@
       <div class="col-6 col-md-4 col-lg-2">
         <div class="card h-100 shadow-sm">
           <img class="card-img-top"
-               src="${pageContext.request.contextPath}/images/rooms/kayaking.jpg"
+               src="${pageContext.request.contextPath}/images/kayaking.jpg"
                alt="Kayaking">
           <div class="card-body py-3 text-center">
             <span class="small fw-semibold">Kayaking</span>
@@ -67,7 +69,7 @@
       <div class="col-6 col-md-4 col-lg-2">
         <div class="card h-100 shadow-sm">
           <img class="card-img-top"
-               src="${pageContext.request.contextPath}/images/rooms/whale.jpg"
+               src="${pageContext.request.contextPath}/images/whale.jpg"
                alt="Whale Watching">
           <div class="card-body py-3 text-center">
             <span class="small fw-semibold">Whale Watching</span>
@@ -79,7 +81,7 @@
       <div class="col-6 col-md-4 col-lg-2">
         <div class="card h-100 shadow-sm">
           <img class="card-img-top"
-               src="${pageContext.request.contextPath}/images/rooms/hiking.jpg"
+               src="${pageContext.request.contextPath}/images/hiking.jpg"
                alt="Hiking">
           <div class="card-body py-3 text-center">
             <span class="small fw-semibold">Hiking</span>
@@ -91,7 +93,7 @@
       <div class="col-6 col-md-4 col-lg-2">
         <div class="card h-100 shadow-sm">
           <img class="card-img-top"
-               src="${pageContext.request.contextPath}/images/rooms/scuba-diving.jpg"
+               src="${pageContext.request.contextPath}/images/scuba-diving.jpg"
                alt="Scuba Diving">
           <div class="card-body py-3 text-center">
             <span class="small fw-semibold">Scuba Diving</span>
@@ -103,7 +105,7 @@
       <div class="col-6 col-md-4 col-lg-2">
         <div class="card h-100 shadow-sm">
           <img class="card-img-top"
-               src="${pageContext.request.contextPath}/images/rooms/Maps_Resort.webp"
+               src="${pageContext.request.contextPath}/images/Maps_Resort.webp"
                alt="Map of Moffat Bay area">
           <div class="card-body py-3 text-center">
             <span class="small fw-semibold">Map</span>
@@ -117,22 +119,23 @@
   <section class="container pb-5">
     <h2 class="h4 fw-bold mb-4">Featured</h2>
     <div class="row g-4">
-      <!-- Lodge Rooms -->
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card h-100 shadow-sm">
-          <img class="card-img-top" src="${pageContext.request.contextPath}/images/rooms/double-queen.jpg" alt="Lodge Rooms">
-
-          <div class="card-body">
-            <h5 class="card-title">Lodge Rooms</h5>
-            <a class="btn btn-warning fw-bold" href="${pageContext.request.contextPath}/reservations">Book Now</a>
+      <!-- Lodge Rooms (pick one of the room images) -->
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm">
+              <img class="card-img-top"
+                   src="${pageContext.request.contextPath}/images/room.jpeg"
+                   alt="Lodge Rooms">
+              <div class="card-body">
+                <h5 class="card-title">Lodge Rooms</h5>
+                <a class="btn btn-warning fw-bold" href="${pageContext.request.contextPath}/reservations">Book Now</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
       <!-- Marina -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <img class="card-img-top" src="${pageContext.request.contextPath}/images/rooms/marina.webp" alt="Marina">
+          <img class="card-img-top" src="${pageContext.request.contextPath}/images/marina.webp" alt="Marina">
           <div class="card-body">
             <h5 class="card-title">Marina</h5>
           </div>
@@ -143,7 +146,7 @@
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
           <picture>
-            <source srcset="${pageContext.request.contextPath}/images/rooms/spa.avif" type="image/avif">
+            <source srcset="${pageContext.request.contextPath}/images/spa.avif" type="image/avif">
             <img class="card-img-top" src="${pageContext.request.contextPath}/images/rooms/spa.png" alt="Spa">
           </picture>
           <div class="card-body">
@@ -155,7 +158,7 @@
       <!-- Guided Tours  -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <img class="card-img-top" src="${pageContext.request.contextPath}/images/rooms/tour.jpg" alt="Guided Tours">
+          <img class="card-img-top" src="${pageContext.request.contextPath}/images/tour.jpg" alt="Guided Tours">
           <div class="card-body">
             <h5 class="card-title">Guided Tours</h5>
           </div>
