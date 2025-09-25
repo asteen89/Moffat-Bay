@@ -87,11 +87,21 @@ public class AuthController {
         session.setAttribute("auth", auth);
         session.setAttribute("guestId", guestId);
 
-        // Safe redirect
-        if (next != null && !next.isBlank() && next.startsWith("/") && !next.startsWith("//")) {
-            return "redirect:" + next;
+        // Redirect
+        String target = null;
+        if (next != null && !next.isBlank()) {
+            String decoded;
+            try {
+                decoded = java.net.URLDecoder.decode(next, java.nio.charset.StandardCharsets.UTF_8);
+            } catch (IllegalArgumentException ex) {
+                decoded = next; // if not encoded, use as-is
+            }
+            // allow only same-site relative paths
+            if (decoded.startsWith("/") && !decoded.startsWith("//")) {
+                target = decoded;
+            }
         }
-        return "redirect:/";
+        return "redirect:" + (target != null ? target : "/");
     }
 
 

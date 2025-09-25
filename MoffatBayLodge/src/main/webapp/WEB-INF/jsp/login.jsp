@@ -73,6 +73,7 @@
             <c:if test="${not empty errorMessage}"><div class="alert alert-warning">${errorMessage}</div></c:if>
             <div class="container-sm">
                 <form method="post" action="${ctx}/auth/login" class="mt-3">
+                    <input type="hidden" name="next" value="${param.next != null ? param.next : next}">
 
                     <div class="mb-3">
                         <input type="email" class="form-control underlined" name="email" placeholder="Email" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
