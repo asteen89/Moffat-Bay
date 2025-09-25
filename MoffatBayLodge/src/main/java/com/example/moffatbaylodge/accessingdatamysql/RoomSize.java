@@ -6,23 +6,27 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "RoomSize")
 public class RoomSize {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "RoomID")
-    private Integer roomID;
+    private Integer roomId;
 
-    @Column(name = "RoomSize", nullable = false)
+    @Column(name = "RoomSize", nullable = false, length = 50)
     private String roomSize;
 
-    @Column(name = "RoomPrice", nullable = false)
+    @Column(name = "RoomPrice", nullable = false, precision = 10, scale = 2)
     private BigDecimal roomPrice;
 
-    @Column(name = "Quantity")
+    @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
-    // getters & setters
-    public Integer getRoomID() { return roomID; }
-    public void setRoomID(Integer roomID) { this.roomID = roomID; }
+    // no-args constructor
+    public RoomSize() {}
+
+    // Getters/setters
+    public Integer getRoomId() { return roomId; }
+    public void setRoomId(Integer roomId) { this.roomId = roomId; }
 
     public String getRoomSize() { return roomSize; }
     public void setRoomSize(String roomSize) { this.roomSize = roomSize; }
@@ -33,4 +37,3 @@ public class RoomSize {
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { this.quantity = quantity; }
 }
-

@@ -76,29 +76,30 @@
 
 <!-- Booking Section -->
 <section class="container my-5">
-    <div class="booking-box row g-3 p-4 rounded-4 shadow">
-        <div class="col-12 col-md-3">
-            <label for="checkin"><i class="bi bi-calendar-date me-2"></i>Check In</label>
-            <input id="checkin" type="date" class="form-control">
-        </div>
-
-        <div class="col-12 col-md-3">
-            <label for="checkout"><i class="bi bi-calendar-date me-2"></i>Check Out</label>
-            <input id="checkout" type="date" class="form-control">
-        </div>
-
-        <div class="col-12 col-md-3">
-            <label for="guests"><i class="bi bi-person me-2"></i>Guests</label>
-            <select id="guests" class="form-select">
-                <option>1</option><option>2</option><option>3</option><option>4</option>
-                <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
-            </select>
-        </div>
-
-        <div class="col-12 col-md-2 d-flex align-items-end justify-content-end">
-            <button class="btn btn-warning fw-bold search-btn">Search Now</button>
-        </div>
+<form class="booking-box row g-3 p-4 rounded-4 shadow"
+      method="get"
+      action="${pageContext.request.contextPath}/roombooking">
+    <div class="col-12 col-md-3">
+        <label for="checkin"><i class="bi bi-calendar-date me-2"></i>Check In</label>
+        <input id="checkin" name="checkIn" type="date" class="form-control" required>
     </div>
+
+    <div class="col-12 col-md-3">
+        <label for="checkout"><i class="bi bi-calendar-date me-2"></i>Check Out</label>
+        <input id="checkout" name="checkOut" type="date" class="form-control" required>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <label for="guests"><i class="bi bi-person me-2"></i>Guests</label>
+        <select id="guests" name="guests" class="form-select">
+            <c:forEach var="g" begin="1" end="9"><option value="${g}">${g}</option></c:forEach>
+        </select>
+    </div>
+
+    <div class="col-12 col-md-2 d-flex align-items-end justify-content-end">
+        <button class="btn btn-warning fw-bold search-btn" type="submit">Search Now</button>
+    </div>
+</form>
 </section>
 
 <!-- Gallery Section -->
