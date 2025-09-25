@@ -24,11 +24,11 @@ public class HomeController {
         return "registration";   // /WEB-INF/jsp/registration.jsp
     }
 
-    // GET /about
-    @GetMapping("/about")
-    public String about() {
-        return "about";          // /WEB-INF/jsp/about.jsp
+    // GET /attractions
+    @GetMapping("/attractions")
+    public String attractions() {
+        return "attractions";    // -> /WEB-INF/jsp/attractions.jsp
     }
-
-
 }
+
+
