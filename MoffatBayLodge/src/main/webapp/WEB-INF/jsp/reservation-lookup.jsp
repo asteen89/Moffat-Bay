@@ -24,18 +24,18 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-auto main-nav">
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/attractions" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservations/lookup" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout if logged in, otherwise Login/Register -->
             <c:choose>
-                <c:when test="${not empty sessionScope.auth}">
-                    <a href="${pageContext.request.contextPath}/logout" class="btn-login">Logout</a>
+                <c:when test="${auth != null && auth.authenticated}">
+                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login" class="btn-login">Login / Register</a>
+                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/login">Login / Register</a>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -167,12 +167,12 @@
 <footer class="footer py-5">
     <div class="container">
         <div class="row text-center text-md-start align-items-stretch">
-            <div class="text-center mt-4 small">
-                <a href="#">Attractions</a> |
+            <div class="footer-links text-center mt-4 small">
+                <a href="${pageContext.request.contextPath}/attractions">Attractions</a> |
                 <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
                 <a href="${pageContext.request.contextPath}/about">About Us</a> |
-                <a href="${pageContext.request.contextPath}/login">Log In</a> |
-                <a href="${pageContext.request.contextPath}/reservations/lookup">My Reservations</a>
+                <a href="${pageContext.request.contextPath}/login">Login</a> |
+                <a href="${pageContext.request.contextPath}/reservations/lookup">My Reservation</a>
                 <p class="mt-2 mb-0">© 2025 Moffat Bay Lodge</p>
             </div>
         </div>
