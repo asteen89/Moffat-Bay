@@ -85,7 +85,7 @@ body {
 ------------------- */
 .hero {
   height: 65vh;
-  background: url("images/banner-landing.png") center center/cover no-repeat;
+  background: url("./images/banner-landing.png") center center/cover no-repeat;
   position: relative;
   display: flex;
   align-items: center;
@@ -398,7 +398,7 @@ body.reservation-page {
 /* Reservation Hero Background */
 .reservation-hero {
   min-height: 70vh;
-  background: url("images/banner-landing.png") center center/cover no-repeat;
+  background: url("./images/banner-landing.png") center center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -420,7 +420,6 @@ body.reservation-page {
   padding: 2rem;
 }
 
-
 .form-label {
   font-weight: 600;
 }
@@ -435,7 +434,7 @@ body.reservation-page {
    Reservation Lookup / Modify
 ------------------- */
 .hero-compact {
-  background-image: url('../images/banner-landing.png');
+  background-image: url('./images/banner-landing.png');
   background-size: cover;
   background-position: center;
   padding: 40px 0 60px;
@@ -470,17 +469,15 @@ body.reservation-page {
 /*-------------------
 Attractions Page
 ------------------- */
- */
+
 .rooms-hero {
   min-height: 70vh;
-  background: url("images/banner-landing.png") center center/cover no-repeat;
+  background: url("./images/banner-landing.png") center center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
- */
-
 
 /* Highlights images */
 .card-img-fixed-160 {
@@ -509,8 +506,8 @@ Attractions Page
 /* Uniform images for both Highlights and Featured */
 .uniform-img {
   width: 100%;
-  height: 220px;       /* Same height for Highlights & Featured */
-  object-fit: cover;   /* Crop and center neatly */
+  height: 220px;
+  object-fit: cover;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
