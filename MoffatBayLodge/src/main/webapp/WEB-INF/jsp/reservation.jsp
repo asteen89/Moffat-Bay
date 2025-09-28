@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-auto main-nav">
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/attractions" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn active">Reservations</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservations/lookup" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
@@ -60,7 +60,6 @@
         <div class="card reservation-card shadow-lg p-4">
             <h2 class="text-center fw-bold mb-4">BOOK YOUR VACATION</h2>
             <form method="post" action="/reservation/preview">
-                <!-- Room Size -->
                 <!-- Room Size -->
                 <div class="mb-3">
                     <label class="form-label">Select Room Size</label>
@@ -110,7 +109,7 @@
         <div class="row text-center text-md-start align-items-stretch">
             <!-- Bottom Links -->
             <div class="text-center mt-4 small">
-                <a href="#">Attractions</a> |
+                <a href="${pageContext.request.contextPath}/attractions">Attractions</a> |
                 <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
                 <a href="${pageContext.request.contextPath}/about">About Us</a> |
                 <a href="${pageContext.request.contextPath}/login">Log In</a> |

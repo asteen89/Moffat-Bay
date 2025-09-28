@@ -107,13 +107,13 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-md-4">
-                <img src="images/room.png" alt="Room" class="gallery-img">
+                <img src="../images/room.png" alt="Room" class="gallery-img">
             </div>
             <div class="col-md-4">
-                <img src="images/patio.png" alt="Patio" class="gallery-img">
+                <img src="../images/patio.png" alt="Patio" class="gallery-img">
             </div>
             <div class="col-md-4">
-                <img src="images/spa.png" alt="Spa" class="gallery-img">
+                <img src="../images/spa.png" alt="Spa" class="gallery-img">
             </div>
         </div>
     </div>

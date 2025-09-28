@@ -143,7 +143,7 @@
 
 <!-- Footer -->
 <div class="footer-links text-center mt-4 small">
-    <a href="#">Attractions</a> |
+    <a href="${pageContext.request.contextPath}/attractions">Attractions</a> |
     <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
     <a href="${pageContext.request.contextPath}/about">About Us</a> |
     <a href="${pageContext.request.contextPath}/login">Login</a> |
