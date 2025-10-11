@@ -32,7 +32,12 @@
             <!-- Show Logout if logged in, otherwise Login/Register -->
             <c:choose>
                 <c:when test="${auth != null && auth.authenticated}">
-                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    <div class="d-flex align-items-center ms-auto">
+        <span class="welcome-user me-3">
+            Welcome, <c:out value="${auth.firstName}"/> <c:out value="${auth.lastName}"/>
+        </span>
+                        <a class="btn-logout" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <a class="btn-login" href="${pageContext.request.contextPath}/auth/login">Login / Register</a>

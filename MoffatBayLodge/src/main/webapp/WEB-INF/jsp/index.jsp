@@ -1,17 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Moffat Bay Lodge</title>
+    <title>Moffat Bay Lodge – Home</title>
 
     <!-- Bootstrap + (optional) Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <!-- site styles -->
+    <!-- site styles (original path, versioned) -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css?v=5">
 
 </head>
@@ -49,8 +48,15 @@
              which invalidates the session. AS-->
             <c:choose>
                 <c:when test="${auth != null && auth.authenticated}">
-                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    <div class="d-flex align-items-center ms-auto">
+        <span class="welcome-user me-3">
+            Welcome, <c:out value="${auth.firstName}"/> <c:out value="${auth.lastName}"/>
+        </span>
+                        <a class="btn-logout" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    </div>
                 </c:when>
+
+
                 <c:otherwise>
                     <a class="btn-login" href="${pageContext.request.contextPath}/auth/login">Login / Register</a>
                 </c:otherwise>
@@ -76,30 +82,30 @@
 
 <!-- Booking Section -->
 <section class="container my-5">
-<form class="booking-box row g-3 p-4 rounded-4 shadow"
-      method="get"
-      action="${pageContext.request.contextPath}/roombooking">
-    <div class="col-12 col-md-3">
-        <label for="checkin"><i class="bi bi-calendar-date me-2"></i>Check In</label>
-        <input id="checkin" name="checkIn" type="date" class="form-control" required>
-    </div>
+    <form class="booking-box row g-3 p-4 rounded-4 shadow"
+          method="get"
+          action="${pageContext.request.contextPath}/roombooking">
+        <div class="col-12 col-md-3">
+            <label for="checkin"><i class="bi bi-calendar-date me-2"></i>Check In</label>
+            <input id="checkin" name="checkIn" type="date" class="form-control" required>
+        </div>
 
-    <div class="col-12 col-md-3">
-        <label for="checkout"><i class="bi bi-calendar-date me-2"></i>Check Out</label>
-        <input id="checkout" name="checkOut" type="date" class="form-control" required>
-    </div>
+        <div class="col-12 col-md-3">
+            <label for="checkout"><i class="bi bi-calendar-date me-2"></i>Check Out</label>
+            <input id="checkout" name="checkOut" type="date" class="form-control" required>
+        </div>
 
-    <div class="col-12 col-md-3">
-        <label for="guests"><i class="bi bi-person me-2"></i>Guests</label>
-        <select id="guests" name="guests" class="form-select">
-            <c:forEach var="g" begin="1" end="9"><option value="${g}">${g}</option></c:forEach>
-        </select>
-    </div>
+        <div class="col-12 col-md-3">
+            <label for="guests"><i class="bi bi-person me-2"></i>Guests</label>
+            <select id="guests" name="guests" class="form-select">
+                <c:forEach var="g" begin="1" end="9"><option value="${g}">${g}</option></c:forEach>
+            </select>
+        </div>
 
-    <div class="col-12 col-md-2 d-flex align-items-end justify-content-end">
-        <button class="btn btn-warning fw-bold search-btn" type="submit">Search Now</button>
-    </div>
-</form>
+        <div class="col-12 col-md-2 d-flex align-items-end justify-content-end">
+            <button class="btn btn-warning fw-bold search-btn" type="submit">Search Now</button>
+        </div>
+    </form>
 </section>
 
 <!-- Gallery Section -->
@@ -180,7 +186,7 @@
 
         <!-- Bottom Links -->
         <div class="footer-links text-center mt-4 small">
-            <a href="#">Attractions</a> |
+            <a href="${pageContext.request.contextPath}/attractions">Attractions</a> |
             <a href="${pageContext.request.contextPath}/reservation">Reservations</a> |
             <a href="${pageContext.request.contextPath}/about">About Us</a> |
             <a href="${pageContext.request.contextPath}/login">Login</a> |
@@ -196,67 +202,67 @@
 <!-- Newsletter fetch JS -->
 
 <script>
-(function () {
-  const form = document.getElementById('newsletterForm');
-  const emailInput = document.getElementById('newsletterEmail');
-  const msg = document.getElementById('newsletterMsg');
+    (function () {
+        const form = document.getElementById('newsletterForm');
+        const emailInput = document.getElementById('newsletterEmail');
+        const msg = document.getElementById('newsletterMsg');
 
-  function show(text, color) {
-    msg.textContent = text;
-    msg.style.color = color;
-  }
+        function show(text, color) {
+            msg.textContent = text;
+            msg.style.color = color;
+        }
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
 
-    show('', '');
-    if (!email) {
-      show('Please enter your email.', 'crimson');
-      return;
-    }
+            show('', '');
+            if (!email) {
+                show('Please enter your email.', 'crimson');
+                return;
+            }
 
-    try {
-      const url = '${pageContext.request.contextPath}/api/newsletter';
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
+            try {
+                const url = '${pageContext.request.contextPath}/api/newsletter';
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
 
-      console.log('[newsletter] status', res.status);
-      const ctype = res.headers.get('content-type') || '';
-      let raw = await res.text();
-      let data = null;
-      try { data = ctype.includes('application/json') ? JSON.parse(raw) : null; }
-      catch (_) { /* ignore parse error */ }
+                console.log('[newsletter] status', res.status);
+                const ctype = res.headers.get('content-type') || '';
+                let raw = await res.text();
+                let data = null;
+                try { data = ctype.includes('application/json') ? JSON.parse(raw) : null; }
+                catch (_) { /* ignore parse error */ }
 
-      console.log('[newsletter] body', raw || '(empty)');
+                console.log('[newsletter] body', raw || '(empty)');
 
-      if (res.status === 409) {
-        show('You are already subscribed.', 'green');
-        return;
-      }
+                if (res.status === 409) {
+                    show('You are already subscribed.', 'green');
+                    return;
+                }
 
-      if (!res.ok) {
-        show(data?.error || raw || `Subscription failed (HTTP ${res.status}).`, 'crimson');
-        return;
-      }
+                if (!res.ok) {
+                    show(data?.error || raw || `Subscription failed (HTTP ${res.status}).`, 'crimson');
+                    return;
+                }
 
-      // HTTP 200+ success: accept either JSON ok:true OR empty body
-      const ok = (data && (data.ok === true || data.status === 'ok')) || !raw;
-      if (ok) {
-        show('Thanks for subscribing!', 'green');
-        emailInput.value = '';
-      } else {
-        show(data?.error || 'Subscription failed.', 'crimson');
-      }
-    } catch (err) {
-      console.error('[newsletter] fetch error', err);
-      show('Network error. Please try again.', 'crimson');
-    }
-  });
-})();
+                // HTTP 200+ success: accept either JSON ok:true OR empty body
+                const ok = (data && (data.ok === true || data.status === 'ok')) || !raw;
+                if (ok) {
+                    show('Thanks for subscribing!', 'green');
+                    emailInput.value = '';
+                } else {
+                    show(data?.error || 'Subscription failed.', 'crimson');
+                }
+            } catch (err) {
+                console.error('[newsletter] fetch error', err);
+                show('Network error. Please try again.', 'crimson');
+            }
+        });
+    })();
 </script>
 
 

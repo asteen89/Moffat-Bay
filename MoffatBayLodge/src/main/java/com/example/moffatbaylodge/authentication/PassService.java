@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-
-// Authentication service configuration
+import java.util.Map;
 
 @Service
 public class PassService {
@@ -41,5 +40,10 @@ public class PassService {
             return null; // no user for that email
         }
     }
-}
 
+    // This method must be outside the authenticate() method
+    public Map<String, Object> getGuestNameById(Integer guestId) {
+        String sql = "SELECT FirstName, LastName FROM guests WHERE GuestID = ?";
+        return jdbc.queryForMap(sql, guestId);
+    }
+}

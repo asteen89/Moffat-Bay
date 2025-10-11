@@ -24,16 +24,23 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-auto main-nav">
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/" class="nav-btn">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">Attractions</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/attractions" class="nav-btn">Attractions</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/reservation" class="nav-btn">Reservations</a></li>
-                <li class="nav-item"><a href="#" class="nav-btn">My Reservation</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/reservations/lookup" class="nav-btn">My Reservation</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/about" class="nav-btn">About Us</a></li>
             </ul>
             <!-- Show Logout if logged in, otherwise Login/Register -->
             <c:choose>
-                <c:when test="${not empty sessionScope.auth}">
-                    <a href="${pageContext.request.contextPath}/logout" class="btn-login">Logout</a>
+                <c:when test="${sessionScope.auth != null && sessionScope.auth.authenticated}">
+                    <div class="d-flex align-items-center ms-auto">
+        <span class="welcome-user me-3">
+            Welcome, <c:out value="${sessionScope.auth.firstName}"/> <c:out value="${sessionScope.auth.lastName}"/>
+        </span>
+                        <a class="btn-logout" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    </div>
                 </c:when>
+
+
                 <c:otherwise>
                     <a href="${pageContext.request.contextPath}/login" class="btn-login">Login / Register</a>
                 </c:otherwise>
