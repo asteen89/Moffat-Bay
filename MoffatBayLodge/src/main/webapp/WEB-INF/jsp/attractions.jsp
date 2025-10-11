@@ -42,8 +42,14 @@
             </ul>
             <c:choose>
                 <c:when test="${auth != null && auth.authenticated}">
-                    <a class="btn-login" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    <div class="d-flex align-items-center ms-auto">
+        <span class="welcome-user me-3">
+            Welcome, <c:out value="${auth.firstName}"/> <c:out value="${auth.lastName}"/>
+        </span>
+                        <a class="btn-logout" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
+                    </div>
                 </c:when>
+
                 <c:otherwise>
                     <a class="btn-login" href="${pageContext.request.contextPath}/auth/login">Login / Register</a>
                 </c:otherwise>
@@ -63,36 +69,57 @@
 <div class="container my-5">
     <h2 class="mb-4 text-center">Highlights</h2>
     <div class="row g-4 justify-content-center">
+
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm text-center">
                 <img class="card-img-top uniform-img" src="${pageContext.request.contextPath}/images/attractions/kayaking.jpg" alt="Kayaking">
-                <div class="card-body text-center"><span class="fw-semibold">Kayaking</span></div>
+                <div class="card-body">
+                    <span class="fw-semibold">Kayaking</span>
+                    <p class="card-desc">Paddle through calm bay waters and explore hidden coves around the island.</p>
+                </div>
             </div>
         </div>
+
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm text-center">
                 <img class="card-img-top uniform-img" src="${pageContext.request.contextPath}/images/attractions/whale.jpg" alt="Whale Watching">
-                <div class="card-body text-center"><span class="fw-semibold">Whale Watching</span></div>
+                <div class="card-body">
+                    <span class="fw-semibold">Whale Watching</span>
+                    <p class="card-desc">Witness majestic orcas and humpback whales in their natural habitat.</p>
+                </div>
             </div>
         </div>
+
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm text-center">
                 <img class="card-img-top uniform-img" src="${pageContext.request.contextPath}/images/attractions/hiking.jpg" alt="Hiking">
-                <div class="card-body text-center"><span class="fw-semibold">Hiking</span></div>
+                <div class="card-body">
+                    <span class="fw-semibold">Hiking</span>
+                    <p class="card-desc">Enjoy scenic forest trails and panoramic views of Moffat Bay’s landscapes.</p>
+                </div>
             </div>
         </div>
+
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm text-center">
                 <img class="card-img-top uniform-img" src="${pageContext.request.contextPath}/images/attractions/scuba-diving.jpg" alt="Scuba Diving">
-                <div class="card-body text-center"><span class="fw-semibold">Scuba Diving</span></div>
+                <div class="card-body">
+                    <span class="fw-semibold">Scuba Diving</span>
+                    <p class="card-desc">Dive beneath the waves to explore colorful coral reefs and marine life.</p>
+                </div>
             </div>
         </div>
+
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm text-center">
                 <img class="card-img-top uniform-img" src="${pageContext.request.contextPath}/images/attractions/Maps_Resort.webp" alt="Island Map">
-                <div class="card-body text-center"><span class="fw-semibold">Island Map</span></div>
+                <div class="card-body">
+                    <span class="fw-semibold">Island Map</span>
+                    <p class="card-desc">Discover every corner of Moffat Bay Lodge, your guide to adventure awaits.</p>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 

@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/auth")
@@ -79,11 +80,16 @@ public class AuthController {
             if (next != null && !next.isBlank()) ra.addFlashAttribute("next", next);
             return "redirect:/auth/login";
         }
+        Map<String, Object> nameData = passService.getGuestNameById(guestId);
+        String firstName = (String) nameData.get("FirstName");
+        String lastName = (String) nameData.get("LastName");
 
         // Mark logged in
         auth.setAuthenticated(true);
         auth.setEmail(emailNorm);
         auth.setGuestId(guestId);
+        auth.setFirstName(firstName);
+        auth.setLastName(lastName);
         session.setAttribute("auth", auth);
         session.setAttribute("guestId", guestId);
 
